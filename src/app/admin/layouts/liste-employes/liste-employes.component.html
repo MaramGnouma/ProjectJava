@@ -1,0 +1,83 @@
+<div class="container">
+  <app-header></app-header>
+  <div id="toast-container"></div>
+
+  <!-- ========================= Main ==================== -->
+  <main class="main table" id="employes_table">
+    <div class="topbar">
+      <div class="toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </div>
+
+      <div class="user">
+        <img src="assets/imgs/customer01.jpg" alt="">
+      </div>
+    </div>
+
+    <section class="table__header">
+      <h1>Gestion des Employés</h1>
+
+      <div class="input-group">
+        <input type="search" placeholder="Rechercher..." (input)="onSearchChange($event)">
+        <img src="assets/search.png" alt="" width="100">
+      </div>
+    </section>
+
+    <section class="table__body">
+      <table>
+        <thead>
+          <tr>
+            <th> Nom <span class="icon-arrow">&UpArrow;</span></th>
+            <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+            <th> Poste <span class="icon-arrow">&UpArrow;</span></th>
+            <th> Téléphone <span class="icon-arrow">&UpArrow;</span></th>
+            <th> Sexe <span class="icon-arrow">&UpArrow;</span></th>
+            <th> Actions <span class="icon-arrow">&UpArrow;</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employe of filteredEmployes">
+            <td>{{ employe.nomComplet }}</td>
+            <td>{{ employe.email }}</td>
+            <td>{{ employe.role }}</td>
+            <td>{{ employe.telephone }}</td>
+            <td>{{ employe.sexe }}</td>
+
+            <td class="actions">
+              <img
+                   src="assets/icone/jaccepte.png"
+                   width="24"
+                   height="24"
+                   alt="Accepter"
+                   style="margin-right: 15px;"
+                   (click)="accepterEmploye(employe.id)"
+                   title="Accepter">
+
+              <img
+                   src="assets/icone/rejete.png"
+                   width="24"
+                   height="24"
+                   alt="Refuser"
+                   style="margin-right: 15px;"
+                   (click)="openRefusModal(employe.id)"
+                   title="Refuser">
+
+              <img src="assets/icone/info.png"
+                   width="24"
+                   height="24"
+                   alt="Information"
+                   (click)="showEmployeDetails(employe)"
+                   title="Voir détails">
+            </td>
+          </tr>
+
+          <!-- Message si aucun employé trouvé -->
+          <tr *ngIf="filteredEmployes.length === 0">
+            <td colspan="8" class="empty-table">Aucun employé trouvé</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+

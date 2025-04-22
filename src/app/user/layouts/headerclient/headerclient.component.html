@@ -1,0 +1,148 @@
+<header class="header">
+  <nav class="nav container1">
+  <img src="../../../../assets/logo.png" alt="Food Lover Logo" class="logo"/>
+
+     <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+           <li>
+              <a routerLink="/user/acceuil" class="nav__link">Accueil</a>
+           </li>
+
+           <li>
+              <a routerLink="/user/menu" class="nav__link">Menu</a>
+           </li>
+
+           <li>
+              <a routerLink="/user/propos" class="nav__link">À propos</a>
+           </li>
+
+           <li>
+              <a routerLink="/user/contacts" class="nav__link">Contact</a>
+           </li>
+
+           <li class="panier-hover">
+           <a href="#"><i class="fas fa-shopping-cart"></i></a>
+             <div class="panier-popup">
+                 <h4>Panier</h4>
+                 <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="panier vide" class="panier-img" />
+                 <p>Votre panier est vide</p>
+                 <a href="panier.php" class="btn-panier" style="color: black;">Accéder au panier</a>
+             </div>
+           </li>
+        </ul>
+
+        <!-- Close button -->
+        <div class="nav__close" id="nav-close">
+           <i class="ri-close-large-line"></i>
+        </div>
+     </div>
+
+     <div class="nav__actions">
+        <!-- Dropdown -->
+        <div class="dropdown" id="dropdown">
+           <div class="dropdown__profile">
+              <div class="dropdown__names">
+                 Nom Utilisateur
+              </div>
+
+              <div class="dropdown__image">
+                 <img src="../../../../assets/utilisateur.png" alt="image" style="width: 60px; border-radius: 50%;">
+              </div>
+           </div>
+
+           <div class="dropdown__list">
+              <a href="#" class="dropdown__link" id="profileBtn">
+                    <i class="ri-user-line"></i>
+                    <span>Profile</span>
+              </a>
+
+              <a href="login.php" class="dropdown__link">
+                 <i class="ri-login-box-line"></i>
+                 <span>Connexion</span>
+              </a>
+
+              <a href="javascript:void(0);" class="dropdown__link">
+                 <i class="ri-logout-box-line"></i>
+                 <span>Déconnexion</span>
+              </a>
+           </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+           <i class="ri-menu-line"></i>
+        </div>
+     </div>
+  </nav>
+</header>
+
+<!-- Profile Popup -->
+<div class="profile-popup" id="profilePopup" >
+<div class="profile-popup-content"
+style="background-image: url('../../../../assets/slideAcceuil/img3.jpg'); background-position: center; background-size: cover;">
+<div class="profile-popup-header">
+  <div class="profile-image">
+     <img src="../../.././../assets/chefs/maram.jpg" alt="Profile Photo">
+  </div>
+  <div class="profile-info">
+     <h2 class="profile-name">
+        Mark Sparks
+     </h2>
+  </div>
+</div>
+
+<div class="profile-details">
+  <div class="detail-item">
+     <i class="ri-user-3-line detail-icon"></i>
+     <div>
+        <p class="detail-label">Nom</p>
+        <p class="detail-value">Mark Sparks</p>
+     </div>
+  </div>
+  <div class="detail-item">
+     <i class="ri-mail-line detail-icon"></i>
+     <div>
+        <p class="detail-label">Email</p>
+        <p class="detail-value">mark.sparksexample.com</p>
+     </div>
+  </div>
+  <div class="detail-item">
+     <i class="ri-phone-line detail-icon"></i>
+     <div>
+        <p class="detail-label">Téléphone</p>
+        <p class="detail-value">06 12 34 56 78</p>
+     </div>
+  </div>
+  <div class="detail-item">
+     <i class="ri-calendar-line detail-icon"></i>
+     <div>
+        <p class="detail-label">Date de naissance</p>
+        <p class="detail-value">15/04/1990</p>
+     </div>
+  </div>
+</div>
+
+<div class="profile-actions">
+  <a href="edit-profile.php" class="btn-modify">
+     <i class="ri-edit-line" style="margin-right: 8px;"></i> Modifier le compte
+  </a>
+</div>
+
+<span class="close-popup" (click)="closeProfilePopup()">&times;</span>
+</div>
+</div>
+
+<!-- Not Connected Popup -->
+<div class="profile-popup" id="notConnectedPopup" style="display: none;">
+<div class="profile-popup-content"   style="background-image: url('../../../../assets/slideAcceuil/img3.jpg'); background-position: center; background-size: cover;">
+>
+<div class="profile-popup-header">
+  <h2>Vous n'êtes pas connecté</h2>
+</div>
+<div class="profile-actions">
+  <a href="login.php" class="btn-modify">Connexion</a>
+  <a href="register.php" class="btn-modify" style="background-color: #6c63ff;">Inscription</a>
+</div>
+<span class="close-popup" (click)="closeNotConnectedPopup()">&times;</span>
+</div>
+</div>

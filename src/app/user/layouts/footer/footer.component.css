@@ -1,0 +1,11 @@
+#footer {
+  background-color: black;
+  background-image:url('../../../../assets/footer-form-bg.png');
+  text-align: center;
+    color: #f0e6e6;
+    padding: 15px 0;
+    font-size: 14px;
+  }
+#footer a{
+  color: rgb(216, 159, 36);
+}

@@ -1,0 +1,8 @@
+.slider-item.active .section-subtitle { animation-delay: 500ms; }
+  .slider-item.active .hero-title { animation-delay: 1000ms; }
+  .slider-item.active .hero-text { animation-delay: 1.5s; }
+  .slider-item.active .btn { animation-delay: 2s; }
+  a i.fa-brands {
+    margin-top: 40px;
+    color: white;
+  }

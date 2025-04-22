@@ -1,0 +1,690 @@
+
+<link rel="preload" as="image" href="assets/slideAcceuil/banniere2.jpg">
+<link rel="preload" as="image" href="assets/slideAcceuil/img2.jpg">
+<link rel="preload" as="image" href="assets/slideAcceuil/img3.jpg">
+
+
+<!-- #TOP BAR -->
+<div class="topbar">
+<div class="container">
+  <address class="topbar-item">
+    <div class="icon">
+      <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+    </div>
+    <span class="span" style="font-size: 15px; color: aliceblue;">
+      Zone Touristique Gammarth Gammarth, Tunis
+    </span>
+  </address>
+  <div class="separator"></div>
+  <div class="topbar-item item-2">
+    <div class="icon">
+      <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+    </div>
+    <span class="span" style="font-size: 15px;color: aliceblue;">Daily : 9.00 am to 00.00 pm</span>
+  </div>
+
+  <!-- Dropdown Information Link -->
+  <div class="topbar-item item-3">
+    <button class="dropbtn">Information</button>
+    <div class="dropdown-content">
+      <a href="#">Login</a>
+      <a href="#">Logout</a>
+      <a href="#">Profile</a>
+    </div>
+  </div>
+
+  <!-- Cart Link with Icon -->
+  <div class="topbar-item item-4">
+    <div class="icon" onclick="showCartPopup()">
+      <ion-icon name="cart-outline" aria-hidden="true"></ion-icon>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Cart Popup -->
+<div id="cartPopup" class="popup">
+<div class="popup-content">
+  <p>Your cart is empty.</p>
+  <button onclick="closeCartPopup()">Close</button>
+</div>
+</div>
+<!--
+  - #PRELOADER
+-->
+
+
+
+<!--
+  - #HEADER
+-->
+
+<header class="header" data-header >
+  <div class="container">
+
+    <a href="#" class="logo">
+      <img src="../../../../assets/logo.png" width="160" height="30" alt="Grilli - Home" >
+    </a>
+
+    <nav class="navbar" data-navbar>
+
+      <button class="close-btn" aria-label="close menu" data-nav-toggler>
+        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+
+
+      <ul class="navbar-list" style="margin-top: -20px;font-weight: bold;">
+
+        <li class="navbar-item">
+          <a routerLink="/user/acceuil" class="navbar-link hover-underline active">
+            <div class="separator"></div>
+
+            <span class="span">Accueil</span>
+          </a>
+        </li>
+
+        <li class="navbar-item">
+          <a routerLink="/user/menu" class="navbar-link hover-underline">
+            <div class="separator"></div>
+
+            <span class="span">Menu</span>
+          </a>
+        </li>
+
+        <li class="navbar-item">
+          <a routerLink="/user/propos" class="navbar-link hover-underline">
+            <div class="separator"></div>
+
+            <span class="span">A propos</span>
+          </a>
+        </li>
+
+
+        <li class="navbar-item">
+          <a routerLink="/user/contacts" class="navbar-link hover-underline">
+            <div class="separator"></div>
+
+            <span class="span">Contact</span>
+          </a>
+        </li>
+
+      </ul>
+
+
+    </nav>
+
+    <a href="#" class="btn btn-secondary">
+      <span class="text text-1" style="font-size: 15px;">Réserver une table</span>
+
+      <span class="text text-2" aria-hidden="true" style="font-size: 15px;">Réserver une table</span>
+    </a>
+
+    <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+      <span class="line line-1"></span>
+      <span class="line line-2"></span>
+      <span class="line line-3"></span>
+    </button>
+
+    <div class="overlay" data-nav-toggler data-overlay></div>
+
+  </div>
+</header>
+
+
+
+
+
+<main>
+  <article>
+
+    <!--
+      - #HERO
+    -->
+
+    <section class="hero text-center" aria-label="accueil" id="home" style="margin-top: -90px;"
+    (mouseenter)="stopSlider()" (mouseleave)="startSlider()">
+
+<ul class="hero-slider" data-hero-slider>
+<li class="slider-item" [class.active]="currentIndex === i" *ngFor="let slide of slides; let i = index" data-hero-slider-item>
+ <div class="slider-bg">
+   <img [src]="slide.image" width="1880" height="950" alt="" class="img-cover">
+ </div>
+
+ <p class="label-2 section-subtitle slider-reveal couleur">{{slide.subtitle}}</p>
+
+ <h1 class="display-1 hero-title slider-reveal couleur" [innerHTML]="slide.title"></h1>
+
+ <p class="body-2 hero-text slider-reveal couleur" style="color: aliceblue;">
+   {{slide.text}}
+ </p>
+
+ <a [href]="slide.btnLink" class="btn btn-primary slider-reveal">
+   <span class="text text-1">{{slide.btnText}}</span>
+   <span class="text text-2" aria-hidden="true">{{slide.btnText}}</span>
+ </a>
+</li>
+</ul>
+
+<button class="slider-btn prev" aria-label="glisser vers la précédente" data-prev-btn
+     (click)="prevSlide()">
+<ion-icon name="chevron-back"></ion-icon>
+</button>
+
+<button class="slider-btn next" aria-label="glisser vers la suivante" data-next-btn
+     (click)="nextSlide()">
+<ion-icon name="chevron-forward"></ion-icon>
+</button>
+
+<a href="#" class="hero-btn has-after">
+<img src="../../../../assets/hero-icon.png" width="48" height="48" alt="icône de réservation">
+<span class="label-2 text-center span" style="margin-top:-20px;font-size: 12px;">Réserver table</span>
+</a>
+</section>
+
+
+    <!--
+      - #SERVICE
+    -->
+
+    <section class="section service bg-black-10 text-center" aria-label="service" style="margin-bottom: 50px-;">
+      <div class="container">
+
+        <p class="section-subtitle label-2" style="margin-top: -80px;">Flavors For Royalty</p>
+        <h2 class="headline-1 section-title">Saveurs pour la royauté</h2>
+
+        <p class="section-text" style="color: rgb(253, 247, 240);  font-family: 'Forum', cursive;font-size: 20px;" >
+          Découvrez des créations uniques préparées par nos chefs talentueux
+          qui mettent en valeur les meilleurs ingrédients de la région.Chez
+          Foody, chaque bouchée est une aventure.
+        </p>
+
+        <ul class="grid-list">
+
+          <li>
+            <div class="service-card">
+
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                  <img src="../../../../assets/service-1.jpg" width="285" height="336" loading="lazy" alt="Breakfast"
+                    class="img-cover">
+                </figure>
+              </a>
+
+              <div class="card-content">
+
+                <h3 class="title-4 card-title custom-title">
+                  <a href="#">Petit-déjeuner</a>
+                </h3>
+
+
+              </div>
+
+            </div>
+          </li>
+
+          <li>
+            <div class="service-card">
+
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                  <img src="../../../../assets/service-2.jpg" width="285" height="336" loading="lazy" alt="Appetizers"
+                    class="img-cover">
+                </figure>
+              </a>
+
+              <div class="card-content">
+
+                <h3 class="title-4 card-title custom-title">
+                  <a href="#">Apéritifs</a>
+                </h3>
+              </div>
+
+            </div>
+          </li>
+
+          <li>
+            <div class="service-card">
+
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                  <img src="../../../../assets/service-3.jpg" width="285" height="336" loading="lazy" alt="Drinks"
+                    class="img-cover">
+                </figure>
+              </a>
+
+              <div class="card-content">
+
+                <h3 class="title-4 card-title custom-title">
+                  <a href="#">Boissons</a>
+                </h3>
+              </div>
+
+            </div>
+          </li>
+
+        </ul>
+
+        <img src="../../../../assets/shape-1.png" width="246" height="412" loading="lazy" alt="shape"
+          class="shape shape-1 move-anim">
+        <img src="../../../../assets/shape-2.png" width="343" height="345" loading="lazy" alt="shape"
+          class="shape shape-2 move-anim">
+
+      </div>
+    </section>
+
+
+
+
+<!-- Debut propos -->
+<section id="about">
+<div class="container">
+  <div class="title">
+    <h2>L'histoire de Foody</h2>
+    <p>Plus de 10+ années d'expérience</p>
+  </div>
+  <div class="about-content">
+    <div>
+      <p>
+        Bienvenue à Foody, votre destination culinaire exclusive à
+        Gammarth. Notre histoire est façonnée par la passion pour les
+        saveurs exquises et l'art de la gastronomie. Chaque plat raconte
+        une histoire de créativité, de fraîcheur et d'authenticité.
+      </p>
+      <p>
+        Découvrez des créations uniques préparées par nos chefs
+        talentueux qui mettent en valeur les meilleurs ingrédients de la
+        région.Chez Foody, chaque bouchée est une aventure, chaque repas
+        est une célébration. Rejoignez-nous et découvrez l'essence même
+        de la gastronomie à Gammarth.
+      </p>
+      <a href="/user/propos" class="btn btn-secondary">EN SAVOIR PLUS</a>
+    </div>
+    <img src="../../../../assets/slideAcceuil/about_img.png " alt="about" />
+  </div>
+</div>
+</section>
+<!-- Fin propos -->
+
+
+
+    <!--
+      - #MENU
+    -->
+
+    <section class="section menu" aria-label="menu-label" id="menu" style="background-color: hsla(30, 8%, 5%, 1);">
+      <div class="container">
+
+        <p class="section-subtitle text-center label-2" style="margin-top: -80px;">Notre Menu Spécial</p>
+
+        <h2 class="headline-1 section-title text-center">Savourez, commandez, adorez !</h2>
+
+        <ul class="grid-list">
+
+          <li>
+            <div class="menu-card hover:card">
+
+              <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                <img src="../../../../assets/menu-1.png" width="100" height="100" loading="lazy" alt="Salade Grecque"
+                  class="img-cover">
+              </figure>
+
+              <div>
+
+                <div class="title-wrapper">
+                  <h3 class="title-3">
+                    <a href="#" class="card-title" style="font-size: 20px;">Salade Grecque</a>
+                  </h3>
+
+                  <span class="badge label-1" style="font-size: 16px;">De saison</span>
+
+                  <span class="span title-2" style="font-size: 20px;">25.50 TND</span>
+                </div>
+
+                <p class="card-text label-1" style="font-size: 16px;">
+                  Tomates, poivron vert, concombre en tranches, oignon, olives, et fromage feta.
+                </p>
+
+              </div>
+
+            </div>
+          </li>
+
+          <li>
+            <div class="menu-card hover:card">
+
+              <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                <img src="../../../../assets/menu-2.png" width="100" height="100" loading="lazy" alt="Lasagne"
+                  class="img-cover">
+              </figure>
+
+              <div>
+
+                <div class="title-wrapper">
+                  <h3 class="title-3">
+                    <a href="#" class="card-title" style="font-size: 20px;">Lasagne</a>
+                  </h3>
+
+                  <span class="span title-2" style="font-size: 20px;">40.00 TND</span>
+                </div>
+
+                <p class="card-text label-1" style="font-size: 16px;">
+                  Légumes, fromages, viandes hachées, sauce tomate, pâtes à lasagne, béchamel, assaisonnements et épices.
+                </p>
+
+
+              </div>
+
+            </div>
+          </li>
+
+          <li>
+            <div class="menu-card hover:card">
+
+              <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                <img src="../../../../assets/menu-3.png" width="100" height="100" loading="lazy" alt="Courge Butternut"
+                  class="img-cover">
+              </figure>
+
+              <div>
+
+                <div class="title-wrapper">
+                  <h3 class="title-3">
+                    <a href="#" class="card-title" style="font-size: 20px;">Courge Butternut</a>
+                  </h3>
+
+                  <span class="span title-2" style="font-size: 20px;">10.00 TND</span>
+                </div>
+
+                <p class="card-text label-1" style="font-size: 16px;">
+                  Courge butternut rôtie, légèrement assaisonnée, avec un filet d'huile d'olive, sel, poivre et épices douces.
+                </p>
+
+
+              </div>
+
+            </div>
+          </li>
+
+          <li>
+            <div class="menu-card hover:card">
+
+              <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                <img src="../../../../assets/menu-4.png" width="100" height="100" loading="lazy" alt="Tokusen Wagyu"
+                  class="img-cover">
+              </figure>
+
+              <div>
+
+                <div class="title-wrapper">
+                  <h3 class="title-3">
+                    <a href="#" class="card-title" style="font-size: 20px;">Tokusen Wagyu</a>
+                  </h3>
+
+                  <span class="badge label-1" style="font-size: 17px;">Nouveau</span>
+
+                  <span class="span title-2" style="font-size: 20px;">39.00 TND</span>
+                </div>
+
+                <p class="card-text label-1" style="font-size: 16px;">
+                  Viande de wagyu de qualité supérieure, légèrement grillée, accompagnée de légumes frais, sauce soja, et assaisonnements japonais.
+                </p>
+
+
+              </div>
+
+            </div>
+          </li>
+
+        </ul>
+
+        <p class="menu-text text-center" style="color: aliceblue;">
+          Pendant l'hiver, tous les jours de <span class="span">19h00</span> à <span class="span">21h00</span>
+        </p>
+
+        <a href="menu.php" class="btn btn-primary">
+          <span class="text text-1">Voir le menu complet</span>
+
+          <span class="text text-2" aria-hidden="true">Voir le menu complet</span>
+        </a>
+
+
+        <img src="../../../../assets/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
+          class="shape shape-4 move-anim">
+        <img src="../../../../assets/shape-6.png" width="343" height="345" loading="lazy" alt="shape"
+          class="shape shape-3 move-anim">
+
+      </div>
+    </section>
+
+
+
+
+
+    <!--
+      - #TESTIMONIALS
+    -->
+
+    <section class="section testi text-center " style="background-image: url('../../../../assets/testimonial-bg.jpg')" aria-label="testimonials">
+      <div class="container" >
+
+        <div class="quote">”</div>
+
+        <p class="headline-2 testi-text" style="font-size: 50px">
+          Je voulais te remercier de m’avoir invitée l’autre soir pour ce dîner incroyable. La nourriture était extraordinaire.
+        </p>
+
+        <div class="wrapper">
+          <div class="separator"></div>
+          <div class="separator"></div>
+          <div class="separator"></div>
+        </div>
+
+        <div class="profile">
+          <img src="../../../../assets/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
+            class="img">
+
+          <p class="label-2 profile-name" style="font-size: 12px;">Sam Jhonson</p>
+        </div>
+
+      </div>
+</section>
+    <!--- #RESERVATION --->
+    <section class="reservation" style="background-color: black;">
+      <div style="background-color:rgb(7, 7, 7)"> </div>
+      <div class="container"  >
+          <div class="form reservation-form bg-black-10" >
+              <form action="../PHP/reservation.php" class="form-left" method="POST">
+                  <h2 class="headline-1 text-center">Réservation en ligne</h2>
+                  <p class="form-text text-center">
+                      Demande de réservation <a href="tel:+88123123456" class="link">+216 94 135 108</a>
+                      ou remplissez le formulaire de commande
+                  </p>
+                  <div class="input-wrapper">
+                      <input type="text" name="name" placeholder="Votre nom" autocomplete="off" class="input-field">
+                      <input type="tel" name="phone" placeholder="Numéro de téléphone" autocomplete="off" class="input-field">
+                  </div>
+                  <div class="input-wrapper">
+                      <div class="icon-wrapper">
+                          <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                          <select name="person" class="input-field">
+                              <option value="2-person">2 personnes</option>
+                              <option value="3-person">3 personnes</option>
+                              <option value="4-person">4 personnes</option>
+                              <option value="5-person">5 personnes</option>
+                              <option value="6-person">6 personnes</option>
+                              <option value="7-person">7 personnes</option>
+                          </select>
+                          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                      </div>
+                      <div class="icon-wrapper">
+                          <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+                          <input type="date" name="reservation_date" class="input-field">
+                          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                      </div>
+                      <div class="icon-wrapper">
+                          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                          <select name="heure_reservation" class="input-field">
+                              <option value="08:00am">08 : 00</option>
+                              <option value="09:00am">09 : 00</option>
+                              <option value="10:00am">10 : 00</option>
+                              <option value="11:00am">11 : 00</option>
+                              <option value="12:00am">12 : 00</option>
+                              <option value="01:00pm">13 : 00</option>
+                              <option value="02:00pm">14 : 00</option>
+                              <option value="03:00pm">15 : 00</option>
+                              <option value="04:00pm">16 : 00</option>
+                              <option value="05:00pm">17 : 00</option>
+                              <option value="06:00pm">18 : 00</option>
+                              <option value="07:00pm">19 : 00</option>
+                              <option value="08:00pm">20 : 00</option>
+                              <option value="09:00pm">21 : 00</option>
+                              <option value="10:00pm">22 : 00</option>
+                          </select>
+                          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                      </div>
+                  </div>
+                  <div class="input-wrapper">
+                    <input type="email" name="email" placeholder="Votre mail" autocomplete="off" class="input-field" required>
+
+                    <select name="position" class="input-field" required>
+                        <option value="" disabled selected>Choisissez la position de table</option>
+                        <option value="Fenêtre">Fenêtre</option>
+                        <option value="Terrasse">Terrasse</option>
+                        <option value="Salle VIP">Salle VIP</option>
+                    </select>
+                </div>
+
+                  <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+                  <button type="submit" class="btn btn-secondary" name="reservationbtn">
+                      <span class="text text-1">Réserver une table</span>
+                      <span class="text text-2" aria-hidden="true">Réserver une table</span>
+                  </button>
+              </form>
+
+
+          <div class="form-right text-center" style="background-image: url('../assets/images/form-pattern.png')">
+
+            <h2 class="headline-1 text-center" >Contactez-nous</h2>
+
+            <p class="contact-label" style="color: aliceblue;">Demande de réservation</p>
+
+            <a href="tel:+88123123456" class="body-1 contact-number hover-underline" style="font-size: 30px;">+216 94 135 108</a>
+
+            <div class="separator"></div>
+
+            <p class="contact-label" style="color: aliceblue;">Adresse</p>
+
+            <address class="body-4" style="font-size: 20px;">
+              Zone Touristique Gammarth Gammarth, Tunis
+            </address>
+
+
+            <div >
+              <h3 style="color: aliceblue;">SUIVEZ-NOUS</h3>
+              <div style="display: flex; gap: 20px; align-items: center;margin-left: 90px;">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+</section>
+<!--- #FEATURES --->
+
+    <section class="section features text-center test" aria-label="features" style="background-color:rgb(18, 18, 18) ;" >
+      <div class="container">
+
+        <p class="section-subtitle label-2" style="margin-top: -80px;">Votre choix, notre promesse</p>
+
+        <h2 class="headline-1 section-title">Notre signature d’excellence</h2>
+
+        <ul class="grid-list1">
+          <li class="feature-item1">
+            <div class="feature-card1">
+              <div class="card-icon1">
+                <img src="../../../../assets/icones/features-icon-1.png" width="100" height="80" loading="lazy" alt="icon1"/>
+              </div>
+              <h3 class="title-2 card-title" style="font-size: 18px;">Alimentation Hygiénique</h3>
+              <p class="label-1 card-text" style="font-size: 18px;"> Manger de manière sûre pour prévenir les maladies. </p>
+            </div>
+          </li>
+          <li class="feature-item1">
+            <div class="feature-card1">
+              <div class="card-icon1">
+                <img src="../../../../assets/icones/features-icon-2.png" width="100" height="80" loading="lazy"
+                  alt="icon2"/>
+              </div>
+              <h3 class="title-2 card-title" style="font-size: 18px;">Environnement Sain</h3>
+              <p class="label-1 card-text" style="font-size: 18px;"> Un cadre  naturel pour une meilleure qualité de vie.</p>
+            </div>
+          </li>
+          <li class="feature-item1">
+            <div class="feature-card1">
+              <div class="card-icon1">
+                <img src="../../../../assets/icones/features-icon-3.png" width="100" height="80" loading="lazy" alt="icon3"/>
+              </div>
+              <h3 class="title-2 card-title" style="font-size: 18px;">Chefs Compétents</h3>
+              <p class="label-1 card-text" style="font-size: 18px;"> Des chefs experts pour des plats délicieux et raffinés. </p>
+            </div>
+          </li>
+          <li class="feature-item1">
+            <div class="feature-card1">
+              <div class="card-icon1">
+                <img src="../../../../assets/icones/features-icon-4.png" width="100" height="80" loading="lazy" alt="icon4" />
+              </div>
+              <h3 class="title-2 card-title" style="font-size: 18px;">Événements & Fêtes</h3>
+              <p class="label-1 card-text" style="font-size: 18px;" > Créez des événements uniques pour vos occasion.</p>
+            </div>
+          </li>
+        </ul>
+
+        <img src="../../../../assets/shape-7.png" width="208" height="178" loading="lazy" alt="shape"
+          class="shape shape-1 move-anim" >
+
+        <img src="../../../../assets/shape-8.png" width="120" height="115" loading="lazy" alt="shape"
+          class="shape shape-2 move-anim" >
+
+      </div>
+    </section>
+
+
+
+<!-- Debut variétes-->
+<section id="daytime" >
+<div class="container">
+  <div class="daytime-items">
+    <div class="daytime-item">
+      <img src="../../../../assets/icones/breckfastIcon.png" alt="Petit-déjeuner" style="margin-left: 70px;"/>
+      <h3>Petit-déjeuner</h3>
+      <p>9:00 am to 11:00 am</p>
+    </div>
+    <div class="daytime-item">
+      <img src="../../../../assets/icones/lunchIcon.png" alt="Déjeuner" />
+      <h3>Déjeuner</h3>
+      <p>13:00 pm to 17:00 pm</p>
+    </div>
+    <div class="daytime-item">
+      <img src="../../../../assets/icones/dinnerIcon.png" alt="Dîner" />
+      <h3>Dîner</h3>
+      <p>18:00 pm to 00:00 Am</p>
+    </div>
+    <div class="daytime-item">
+      <img src="../../../../assets/icones/dessertIcon.png" alt="Dessert" />
+      <h3>Dessert</h3>
+      <p>Toute la journée</p>
+    </div>
+  </div>
+</div>
+</section>
+</article>
+</main>
+
+<app-footer></app-footer>
+
+

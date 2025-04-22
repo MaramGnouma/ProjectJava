@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { AdminRoutingModule } from './admin-routing.module';
+import { AdminComponent } from './admin.component';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { ListeEmployesComponent } from './layouts/liste-employes/liste-employes.component';
+import { LoginComponent } from './layouts/login/login.component';
+import { RegisterComponent } from './layouts/register/register.component';
+import { IonicModule } from '@ionic/angular';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AdminComponent,
+    DashboardComponent,
+    HeaderComponent,
+    ListeEmployesComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AdminRoutingModule,
+    IonicModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule 
+  ]
+})
+export class AdminModule { }

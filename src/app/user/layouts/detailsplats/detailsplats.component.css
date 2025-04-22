@@ -1,0 +1,115 @@
+/* Debut Style de la scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+/* Couleur de l'arrière-plan de la scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Couleur et design de la partie défilante */
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, #e4b95b, #d3ba99, #a98c61);
+  border-radius: 10px;
+}
+/* Fin Debut Style de la scrollbar */
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /*rem : Taille relative, dépend de la taille de police de l'élément racine */
+    margin: 3rem;
+  }
+
+
+  .img{
+    border-radius: 3rem;
+    flex: 1 0;
+    object-fit: cover;
+    height: 28rem;
+    margin: 1rem;
+    width: 50rem;
+  }
+
+  .details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex:1 0;
+    padding: 2rem;
+    color: black;
+    margin-left: 1rem;
+  }
+
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .name{
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .favorite{
+    color: #e72929;
+    font-size: 2.5rem;
+  }
+
+  .favorite.not{
+    color: grey;
+  }
+
+  .origins{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+
+  .origins span{
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    border-radius: 2rem;
+    background-color: rgb(228, 230, 232);
+  }
+
+
+  .cook-time{
+    margin-top: 1rem;
+  }
+
+  .cook-time span{
+    padding: 0.6rem 2rem 0.6rem 0;
+    border-radius: 10rem;
+    font-size: 1.3rem;
+  }
+
+  .price{
+    font-size: 1.8rem;
+    margin: 2rem 2rem 2rem 0;
+    color: green;
+  }
+
+  .price::before{
+    content: "Prix: ";
+    color: darkgrey;
+  }
+
+  button{
+    color: white;
+    background: #e4b95b;
+        border: none;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 10rem;
+    outline: none;
+  }
+
+  button:hover{
+    opacity: 0.9;
+    cursor: pointer;
+  }

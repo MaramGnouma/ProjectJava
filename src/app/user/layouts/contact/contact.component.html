@@ -1,0 +1,28 @@
+<app-headerclient></app-headerclient>
+<!-- Contact Formulaire Section -->
+    <section id="section-wrapper" style="  margin-top: 50px;">
+      <div class="container">
+        <div class="contact-box">
+          <div class="left"></div>
+          <div class="right">
+            <h2>Contactez-nous</h2>
+            <!--GET: Les données sont envoyées via l'URL-->
+            <form action="Acceuil.html" method="get">
+                <!-- oninput: Réinitialiser le message d'erreur dès que l'utilisateur commence à entrer une valeur -->
+              <input type="text" class="field" name="Nom Complet" placeholder="Votre Nom Complet" required
+                oninvalid="this.setCustomValidity('Veuillez entrer votre nom.')" oninput="this.setCustomValidity('')" />
+              <input type="email" class="field" name="email" placeholder="Votre email" required
+                oninvalid="this.setCustomValidity('Veuillez entrer une adresse e-mail valide.')" oninput="this.setCustomValidity('')" />
+              <input type="number" class="field" name="phone" placeholder="Téléphone" required
+                oninvalid="this.setCustomValidity('Veuillez entrer un numéro de téléphone.')" oninput="this.setCustomValidity('')" />
+              <textarea class="field" name="message" placeholder="Votre Message" required
+                oninvalid="this.setCustomValidity('Veuillez entrer un message.')" oninput="this.setCustomValidity('')">
+            </textarea>
+              <button type="submit" class="btn" >Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<app-footer></app-footer>

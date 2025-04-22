@@ -1,0 +1,598 @@
+/*Style 1 */
+
+
+/* debut propos  */
+#about {
+  height: 80vh;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about .title,
+#menu .title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#about h2,
+#offers h2 {
+  font-size: 40px;
+
+}
+
+#about h2 {
+  color: #383848;
+}
+
+#about .title p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+#about .about-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+#about .about-content p {
+  margin-right: 7rem;
+  line-height: 1.6;
+  color: #9a9a9a;
+  font-weight: 500;
+}
+
+#about img {
+  max-width: 450px;
+}
+
+#about .about-content a {
+  margin-top: 2rem;
+}
+
+/* Fin About  */
+/* debut menu offres */
+#offers {
+  height: 80vh;
+  background-image:url("../../assets/slideAcceuil/hero-slider-2.jpg")center center/cover fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#offers h2 {
+  color: #e4b95b;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#offers .title p {
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#offers .offers-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+#offers .offers-items img {
+  width: 200px;
+  margin-left: 70px;
+}
+
+#offers .offers-items h3 {
+  font-size: 25px;
+  color: #fff;
+  margin: 15px 0;
+}
+
+#offers .offers-items p {
+  color: #fff;
+  font-size: 14px;
+  padding: 0 20px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+#offers .offers-items span {
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+/* Offers Section end */
+/* debut Services */
+.grid-list1 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.card-icon1 img {
+  transition: transform 0.3s ease;
+}
+
+.card-icon1:hover img {
+  transform: rotate(360deg);
+}
+
+.feature-item1 {
+  position: relative;
+  overflow: visible;
+  flex: 0 0 25%;
+  max-width: 250px;
+  min-height: 250px;
+  margin-bottom: 20px;
+}
+
+.feature-item1::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  bottom: -50px;
+  left: 50px;
+  right: -20px;
+  opacity: 0.2;
+  z-index: -1; /* La pattern sera au-dessus d'image */
+  border-radius: 10px;
+  background-size: cover;
+  max-width: 150px;
+}
+
+.section-subtitle,.label-2 {
+  padding-top: 20px;
+}
+
+.feature-card1 {
+  text-align: center;
+  background-color: #242323;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.feature-card1 .label-1 {
+  color: #e3e2dd;
+}
+
+.feature-card1 .card-title {
+  margin-block: 20px;
+  font-size: 23px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.feature-card1 .card-icon1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#services {
+  background-color: #000000;
+  height: 500px;
+}
+
+.feature-card1:hover {
+  background-color: #444444;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Fin service  */
+/* debut variétes */
+#daytime {
+  background: url("../../assets/slideAcceuil/daytime_bg.jpeg") center center/cover fixed no-repeat;
+  color: #fff;
+  text-align: center;
+}
+
+#daytime .daytime-items {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 40vh;
+}
+
+#daytime .daytime-items h3 {
+  font-size: 32px;
+  margin: 20px 0 10px;
+}
+
+#daytime .daytime-items img {
+  margin-left: 30px;
+}
+
+#daytime .daytime-items p {
+  font-weight: 500;
+}
+
+/* Fin variétes  */
+
+/* Debut Contact  */
+#contact {
+  background: ('../../../../assets/slideAcceuil/footer-bg.jpg')  fixed;
+  padding: 5rem 0;
+}
+
+#contact .container {
+  max-width: 900px;
+}
+
+#contact .contact-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#contact .contact-info {
+  width: 50%;
+}
+
+#contact .contact-info div {
+  margin: 30px 0;
+  line-height: 1.7;
+}
+
+#contact .contact-info h3 {
+  font-size: 28px;
+  color: #e5e5eb;
+  margin-bottom: 10px;
+}
+
+#contact .contact-info p {
+  color: #d3c5c5;
+}
+
+#contact .contact-info p i {
+  color: #e4b95b;
+  margin-right: 5px;
+}
+
+#contact .contact-info a i {
+  color: #fff;
+  background: #383848;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+#contact .contact-info a i:hover {
+  background-color: #e4b95b;
+  color: #383848;
+}
+/* Fin Contact */
+
+/* Debut Footer */
+#footer {
+  background-color: #1c1c1e;
+  text-align: center;
+  color: #fff;
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+/* Fin Footer  */
+
+/* Responsiveness */
+/* Medium Screen + Tablet */
+@media (max-width: 1000px) {
+  #navbar img {
+    margin-left: 20px;
+  }
+
+  nav ul {
+    margin-right: 20px;
+  }
+
+  nav ul li a {
+    padding: 10px;
+  }
+
+  header .content h1 {
+    font-size: 28px;
+  }
+
+  #about {
+    height: auto;
+    padding: 4rem 2rem;
+  }
+
+  #about .about-content p {
+    margin-right: 2rem;
+  }
+
+  #about img {
+    width: 250px;
+  }
+
+  #offers .offers-items img {
+    width: 150px;
+  }
+
+  #offers .offers-items h3 {
+    font-size: 18px;
+  }
+
+  #menu .menu-items {
+    display: block;
+  }
+
+  #contact .contact-content {
+    flex-direction: column;
+  }
+  .grid-list {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .grid-list li {
+    flex: 1 1 calc(50% - 15px);
+  }
+
+  .section-text {
+    font-size: 1.1rem;
+  }
+
+  .grid-list {
+    display: block;
+  }
+
+  .grid-list li:nth-child(1) .service-card {
+    margin-top: 130px;
+    margin-left: 200px;
+  }
+
+  .service-card h4 {
+    margin-top: -50px;
+    color: #e3e2dd;
+    margin-left: -220px;
+  }
+  .grid-list li:nth-child(2) .service-card {
+    margin-top: -200px;
+    margin-left: 200px;
+    margin-bottom: 150px;
+  }
+  .grid-list li:nth-child(3) .service-card {
+    margin-top: -30px;
+    margin-left: 200px;
+  }
+  .service .grid-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .service .section-text {
+    margin-inline: 15px;
+    font-size: 16px;
+  }
+  .service-card img {
+    width: 100%;
+    height: auto;
+  }
+  .service-card .has-before {
+    padding-block: 20px;
+  }
+  .service .section-subtitle {
+    font-size: 26px;
+  }
+}
+@media (max-width: 600px) {
+  #navbar {
+    flex-direction: column;
+  }
+
+  #navbar img {
+    margin-bottom: 20px;
+  }
+
+  header .content h1 {
+    font-size: 18px;
+  }
+
+  header .content p {
+    font-size: 14px;
+  }
+
+  #about .about-content {
+    flex-direction: column;
+  }
+
+  #about .about-content a {
+    margin: 2rem 0;
+  }
+
+  #about img {
+    display: none;
+  }
+
+  #offers {
+    height: auto;
+    padding: 30px 10px;
+  }
+
+  #offers .offers-items img {
+    width: 150px;
+    margin-left: 160px;
+  }
+
+  #offers .offers-items {
+    flex-direction: column;
+  }
+
+  #offers .offers-items .offers-item {
+    margin: 20px 10px;
+  }
+
+  #daytime .daytime-items {
+    display: block;
+    height: auto;
+    padding: 30px 0;
+  }
+
+  #daytime .daytime-items .daytime-item {
+    margin-top: 20px;
+  }
+
+  #contact .contact-info,
+  form {
+    width: 80%;
+  }
+  .grid-list {
+    gap: 10px;
+  }
+
+  .grid-list li {
+    flex: 1 1 calc(100% - 10px);
+  }
+
+  .headline-1 {
+    font-size: 1.8rem;
+  }
+  .section-text {
+    font-size: 1rem;
+  }
+  .service-card {
+    padding-top: 10px;
+  }
+  .grid-list {
+    display: block;
+  }
+
+  .grid-list li:nth-child(1) .service-card {
+    margin-top: 130px;
+    margin-left: 90px;
+  }
+
+  .service-card h4 {
+    margin-top: -50px;
+    color: #e3e2dd;
+    margin-left: -190px;
+  }
+
+  .grid-list li:nth-child(2) .service-card {
+    margin-top: -200px;
+    margin-left: 90px;
+    margin-bottom: 190px;
+  }
+  .grid-list li:nth-child(3) .service-card {
+    margin-top: -80px;
+    margin-left: 90px;
+  }
+  .service .grid-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .service .section-text {
+    font-size: 14px;
+    margin-inline: 20px;
+  }
+
+  .service-card .has-before {
+    padding-block: 15px;
+  }
+  .service-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .service .section-subtitle {
+    font-size: 22px;
+  }
+}
+
+
+@media (width: 500px) {
+  .headline-1 {
+    font-size: 1.5rem;
+  }
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  .section-text {
+    font-size: 0.9rem;
+  }
+  .grid-list {
+    display: block;
+  }
+  .grid-list li:nth-child(1) .service-card {
+    margin-top: 130px;
+    margin-left: 90px;
+  }
+  .grid-list li:nth-child(2) .service-card {
+    margin-top: -380px;
+    margin-left: 90px;
+  }
+  .grid-list li:nth-child(3) .service-card {
+    margin-top: -60px;
+    margin-left: 90px;
+  }
+
+}
+@media (max-width: 900px) {
+  .grid-list {
+    display: block;
+  }
+  .grid-list li:nth-child(1) .service-card {
+    margin-top: 130px;
+    margin-left: 150px;
+    width: 400px;
+  }
+  .grid-list li:nth-child(2) .service-card {
+    margin-top: -200px;
+    margin-left: 150px;
+    width: 400px;
+  }
+  .grid-list li:nth-child(3) .service-card {
+    margin-top: -20px;
+    margin-left: 150px;
+    width: 400px;
+  }
+  .section-text,p{
+    padding-left: 120px;
+  }
+  .grid-list1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Aligne les cartes horizontalement */
+  }
+
+  .feature-item1 {
+    flex: 1 1 45%; /* Chaque carte prend 45% de la largeur de son conteneur */
+    margin: 10px; /* Espacement entre les cartes */
+  }
+  #btn1-third {
+    display: flex;
+    justify-content: center;  /* Centrer horizontalement */
+    align-items: center;      /* Centrer verticalement */
+    margin: 0 300px;           /* Centrer le bouton dans son conteneur */
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #e8ca93; /* Optionnel : ajouter un fond si besoin */
+    border: none;             /* Retirer la bordure par défaut du bouton */
+    padding: 10px 20px;       /* Ajouter un peu de padding */
+    width: auto;              /* Assurer que la largeur est flexible */
+  }
+
+  #btn1-third a {
+    color: #000;              /* Couleur du texte */
+    text-decoration: none;    /* Enlever le soulignement du lien */
+  }
+}
+
+
+
+

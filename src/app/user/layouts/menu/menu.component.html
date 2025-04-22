@@ -1,0 +1,606 @@
+<app-headerclient></app-headerclient>
+
+    <!-- Menu Section -->
+    <section class="food_section layout_padding" style="  margin-top: 80px;">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>Notre Menu</h2>
+            </div>
+
+            <ul class="filters_menu">
+              <li [class.active]="activeFilter === '*'" (click)="filterItems('*')">Tous 𓌉◯𓇋</li>
+              <li [class.active]="activeFilter === 'burger'" (click)="filterItems('burger')">Hamburger 🍔</li>
+              <li [class.active]="activeFilter === 'pizza'" (click)="filterItems('pizza')">Pizza 🍕</li>
+              <li [class.active]="activeFilter === 'pates'" (click)="filterItems('pates')">Pâtes 🍝</li>
+              <li [class.active]="activeFilter === 'dessert'" (click)="filterItems('dessert')">Gâteau 🍰</li>
+            </ul>
+
+            <div id="menu">
+                <div class="slide-container">
+                    <!-- Card 1 -->
+                    <div class="slide-content" *ngIf="shouldShow('burger')">
+
+                        <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                      <img [src]="'assets/menu/burgers/burger1.jpg'" alt="" class="card-img">                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Le Bœuf Royal</h2>
+                                    <p class="description">
+                                        Pour les amateurs de sensations fortes: Savourez un steak tendre et juteux accompagné d'une sauce au poivre et de légumes grillés.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">35.00 TND</span></p>
+                                    <div>
+                                        <a routerLink="/user/details"> <button class="button"><i class="fa-regular fa-eye"></i></button></a>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="slide-content" *ngIf="shouldShow('burger')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/burgers/burger2.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">BBQ Double Shot</h2>
+                                    <p class="description">
+                                        Un burger double steak avec du fromage fondant, des oignons caramélisés et une sauce BBQ maison.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">33.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="slide-content" *ngIf="shouldShow('burger')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/burgers/burger3.png"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Burger Infernal</h2>
+                                    <p class="description">
+                                        Pour les amateurs de sensations fortes : un burger épicé garni de jalapeños et de sauce piquante.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">25.00 TND</span></p>
+
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="slide-content" *ngIf="shouldShow('burger')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/burgers/burger4.webp"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Le Classique Gourmet</h2>
+                                    <p class="description">
+                                        Une recette intemporelle : poulet rôti tendre, sauce moutarde à l'ancienne et purée maison.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">20.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Card 5 -->
+                     <div class="slide-content" *ngIf="shouldShow('pizza')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pizza/pizza1.png"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Reine Margherita</h2>
+                                    <p class="description">
+                                        Une pizza italienne classique avec une base de tomate, mozzarella fraîche et basilic.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">20.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Card 6-->
+                     <div class="slide-content" *ngIf="shouldShow('pizza')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pizza/pizza2.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Cheesy Supreme</h2>
+                                    <p class="description">
+                                        Une explosion de fromage avec une croûte fourrée et un mélange de cheddar et mozzarella.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">33.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Card 7 -->
+                    <div class="slide-content" *ngIf="shouldShow('pizza')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pizza/pizza3.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Pizza BBQ Royale</h2>
+                                    <p class="description">
+                                        Une pizza unique avec une base barbecue, garnie de morceaux de viande grillée, de légumes et de fromage, pour un goût exceptionnel.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">40.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Card 8 -->
+                    <div class="slide-content" *ngIf="shouldShow('pizza')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pizza/pizza4.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Truffe & Champignons</h2>
+                                    <p class="description">
+                                        Une pizza raffinée à la truffe et aux champignons, alliant les saveurs terreuses à la richesse du fromage pour une combinaison parfaite.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">44.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Card 9 -->
+                    <div class="slide-content" *ngIf="shouldShow('pates')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pates/pate1.webp"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Spaghetti Bolognese</h2>
+                                    <p class="description">
+                                        Des spaghetti accompagnés d'une sauce bolognaise maison, avec de la viande hachée mijotée lentement pour un goût riche.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">20.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Card 10 -->
+                    <div class="slide-content" *ngIf="shouldShow('pates')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pates/lasagne.webp"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Lasagne Maison</h2>
+                                    <p class="description">
+                                        Des lasagnes préparées avec soin, avec des couches de pâte, de viande hachée, de sauce béchamel et de fromage fondant.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">25.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Card 11 -->
+                     <div class="slide-content" *ngIf="shouldShow('pates')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pates/truffe.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Gnocchi Truffés</h2>
+                                    <p class="description">
+                                        Des gnocchis maison, délicatement parfumés à la truffe, dans une sauce crémeuse qui met en valeur toute la richesse du plat.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">22.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Card 12 -->
+                     <div class="slide-content" *ngIf="shouldShow('pates')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/pates/pate4.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Tortellini au Fromage</h2>
+                                    <p class="description">
+                                        Des tortellinis farcis de fromage crémeux, dans une sauce légère mais savoureuse, pour une expérience de pasta authentique.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">30.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Card 13 -->
+                     <div class="slide-content" *ngIf="shouldShow('dessert')">
+                        <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/gateau/dessert1.webp"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Choco Délice</h2>
+                                    <p class="description">
+                                        Un dessert chocolaté irrésistible, fondant à l'intérieur et croquant à l'extérieur, pour tous les amateurs de chocolat.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">17.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Card 14 -->
+                     <div class="slide-content" *ngIf="shouldShow('dessert')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/gateau/dessert2.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Noisette Gourmande</h2>
+                                    <p class="description">
+                                        Un dessert à base de noisettes croquantes, enrobées de chocolat, idéal pour les gourmands à la recherche de douceur et de croquant.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;"> 25.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Card 15 -->
+                     <div class="slide-content" *ngIf="shouldShow('dessert')">
+                      <div class="card-wrapper">
+                            <div class="card">
+                                <div class="image-content">
+                                    <span class="overlay"></span>
+                                    <div class="card-image">
+                                        <img [src]='"assets/menu/gateau/dessert3.jpg"' alt="" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h2 class="name">Moelleux Chocolat</h2>
+                                    <p class="description">
+                                        Un fondant au chocolat, riche et délicieux, qui fond en bouche et ravira les amateurs de chocolat noir intense.
+                                    </p>
+                                    <br>
+                                    <p> <span class="primary-text" style="font-weight: bold;">20.00 TND</span></p>
+                                    <div>
+                                        <button class="button"><i class="fa-regular fa-eye"></i></button>
+                                        <button class="button"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Carte Menu -->
+
+ <!-- Case à cocher cachée pour gérer l'état de la modal -->
+ <input type="checkbox" id="menu-toggle">
+
+ <!-- Bouton pour ouvrir la modal -->
+ <!--for="menu-toggle" lie le label au checkbox, permettant d'activer ou désactiver la case à cocher en cliquant sur le label -->
+ <label for="menu-toggle" class="menu-button">🍴</label>
+ <div class="overlay2"></div>
+
+ <!-- Modal -->
+ <div class="modal" >
+   <div class="modal-content" style="margin-top: 100px;">
+        <div >
+            <div style="display: flex; justify-content: center; align-items: center;margin-top: 20px;">
+            <label for="menu-toggle" class="close-button" style="margin-top: 100px;">⛌</label>
+
+                <h1 style="color: rgb(239, 255, 11);">Foody Menu</h1> <br> <br>
+                </div>
+                <img [src]='"../../../../assets/separator.svg"' width="250px" height="100px" style="margin-left: 240px;">
+            </div>
+
+
+            <!-- Category: Hamburger -->
+            <div class="menu-category" style="margin-top: -20px;">
+                <h2> 🍔 Hamburger </h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div>
+                            <h3>Le Bœuf Royal</h3>
+                            <p>Un burger avec du bœuf de qualité supérieure, fromage fondant, laitue, tomates,Truffe noire et Caviar.</p>
+                        </div>
+                        <div class="price">35,00 TND</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <h3>BBQ Double Shot</h3>
+                            <p>Double steak de bœuf, fromage fondant, sauce BBQ, oignons caramélisés et salade croquante.</p>
+                        </div>
+                        <div class="price">33,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Burger Infernal</h3>
+                            <p>Steak de bœuf, sauce épicée, jalapeños, fromage cheddar, laitue et tomates.</p>
+                        </div>
+                        <div class="price">25,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Le Classique Gourmet</h3>
+                            <p>Steak de bœuf, fromage bleu, salade, tomates et sauce maison.</p>
+                        </div>
+                        <div class="price">20,00 TND</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: pizza -->
+            <div class="menu-category">
+                <h2> 🍕 Pizza </h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div>
+                            <h3>Reine Margherita</h3>
+                            <p>Tomates fraîches, mozzarella, basilic et sauce tomate maison.</p>
+                        </div>
+                        <div class="price">20,00 TND</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <h3>Cheesy Supreme</h3>
+                            <p>Tomates, mozzarella, cheddar, parmesan et pommes de terre sautées.</p>
+                        </div>
+                        <div class="price">33,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Pizza BBQ Royale</h3>
+                            <p>Tomates, mozzarella, poulet rôti, sauce BBQ et pommes de terre sautées.</p>
+                        </div>
+                        <div class="price">40,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Truffe & Champignons</h3>
+                            <p>Crème, mozzarella, champignons frais et huile de truffe.</p>
+                        </div>
+                        <div class="price">44,00 TND</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Pâtes -->
+            <div class="menu-category">
+                <h2> 🍝 Pâtes </h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div>
+                            <h3>Spaghetti Bolognese</h3>
+                            <p>Pâtes spaghetti avec sauce bolognaise maison et une boule de glace vanille.</p>
+                        </div>
+                        <div class="price">20,00 TND</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <h3>Lasagne Maison</h3>
+                            <p>Lasagnes maison avec viande hachée, fromage ricotta et fruits de saison.</p>
+                        </div>
+                        <div class="price">25,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Gnocchi Truffés</h3>
+                            <p>Gnocchis maison avec sauce crémeuse à la truffe et fruits de saison.</p>
+                        </div>
+                        <div class="price">22,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Tortellini au Fromage</h3>
+                            <p>Tortellini farcis au fromage, accompagnés d'une sauce crémeuse aux herbes et fruits de saison.</p>
+                        </div>
+                        <div class="price">30,00 TND</div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Category: Gâteau -->
+             <div class="menu-category">
+                <h2> 🍰 Gâteau </h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div>
+                            <h3>Choco Délice</h3>
+                            <p>Un gâteau au chocolat fondant avec une boule de glace vanille.</p>
+                        </div>
+                        <div class="price">17,00 TND</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <h3>Noisette Gourmande</h3>
+                            <p>Gâteau aux noisettes, crème légère et fruits de saison.</p>
+                        </div>
+                        <div class="price">25,00 TND</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <h3>Moelleux Chocolat</h3>
+                            <p>Gâteau au chocolat avec un cœur fondant, accompagné de fruits de saison.</p>
+                        </div>
+                        <div class="price">20,00 TND</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+<app-footer></app-footer>
+  <!--Code JS-->
+
+       <!-- Inclusion de la bibliothèque jQuery pour simplifier la manipulation du DOM -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ $(document).ready(function() {
+  // Suppression du premier script qui cause un conflit
+
+  // Garder uniquement cette version améliorée du script
+  $(".filters_menu li").click(function() {
+    // Récupère la valeur de l'attribut data-filter de l'élément cliqué
+    var filter = $(this).data("filter");
+
+    // Affiche tous les éléments si "Tous" est sélectionné
+    if (filter === "*") {
+      $(".slide-content").show();
+    } else {
+      // Cache tous les éléments
+      $(".slide-content").hide();
+      // Affiche uniquement les éléments correspondant au filtre
+      $(".slide-content" + filter).show();
+    }
+
+    // Supprime la classe 'active' de tous les filtres
+    $(".filters_menu li").removeClass("active");
+    // Ajoute la classe 'active' au filtre sélectionné
+    $(this).addClass("active");
+  });
+});
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
+</script>
+
+

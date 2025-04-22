@@ -1,0 +1,483 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --big-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --tiny-font-size: .688rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --big-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --tiny-font-size: .75rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+input,
+button {
+  font-family:  "Montserrat", system-ui;
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color:  hsl(220, 15%, 66%);
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/*=============== LOGIN  ===============*/
+.login {
+  position: relative;
+  height: 100vh;
+  align-items: center;
+  overflow: hidden;
+}
+
+.login__blob {
+  display: none;
+
+}
+
+.login__title {
+  font-size:2,5rem;
+  color:  hsl(220, 68%, 4%);
+  text-align: center;
+  margin-top: 10px;
+}
+
+#login__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color:  hsl(220, 50%, 97%);
+  border-radius: 1rem;
+  height: 50px;
+  margin-top: -30px;
+}
+.login__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color:  hsl(220, 50%, 97%);
+  border-radius: 1rem;
+  height: 50px;
+}
+
+.login__input {
+  background: none;
+  width: 100%;
+  padding: 1.5rem 2.5rem 1.5rem 1.25rem;
+  font-weight:500;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  z-index: 1;
+  font-size: small;
+  transition: border-color .4s;
+
+}
+
+
+
+.login__label {
+  position: absolute;
+  left: 1.25rem;
+  color: hsl(220, 15%, 66%);
+  font-weight: var(--font-semi-bold);
+  transition: transform .4s, font-size .4s, color .4s;
+}
+
+.login__icon {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.25rem;
+  transition: color .4s;
+
+}
+
+.login__password {
+  cursor: pointer;
+  z-index: 10;
+}
+
+.login__forgot {
+  display: block;
+  width: max-content;
+  margin: 1rem 0 0 auto;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color:  hsl(220, 15%, 66%);
+  transition: color .4s;
+  margin-bottom: -10px;
+  margin-top: -5px;
+}
+
+.login__forgot:hover {
+  color:  hsl(208, 92%, 54%);
+}
+
+.login__button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  background-color: hsl(208, 92%, 54%);
+  color:  hsl(0, 0%, 100%);
+  font-weight: 600;
+  padding-block: 1rem;
+  border-radius: 4rem;
+  margin-block: 2rem;
+  cursor: pointer;
+  transition: background-color .4s, box-shadow .4s;
+}
+
+.login__button:hover {
+  background-color: aqua;
+  box-shadow: 0 2px 2px hsla(212, 76%, 3%, 0.3);
+}
+
+.login__social {
+  margin-bottom: 2rem;
+  margin-top: -20px;
+}
+
+.login__social-title {
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: hsl(220, 68%, 4%);
+  margin-bottom: 0.5rem;
+}
+
+.login__social-img {
+  width: 1rem;
+
+}
+
+.login__social-links {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+}
+
+.login__social-link {
+  width: 32px;
+  height: 32px;
+  background-color: var(--body-color);
+  box-shadow: 0 4px 8px hsla(0, 0%, 0%, .1);
+  border-radius: .5rem;
+  display: grid;
+  place-items: center;
+  transition: transform .4s;
+  margin-top: -5px;
+}
+
+.login__social-link:hover {
+  transform: translateY(-.25rem);
+}
+
+.login__switch {
+  text-align: center;
+  font-size: var(--small-font-size);
+  margin-top: -15px;
+}
+
+.login__switch button {
+  background: none;
+  color: hsl(208, 92%, 54%);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+  transition: color .4s;
+}
+
+.login__switch button:hover {
+  color: hsl(208, 88%, 50%);
+}
+
+.login__access,
+.login__register {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transition: transform .4s, opacity .4s .1s;
+}
+
+.login__register {
+  transform: translateX(15rem);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Input focus move up label */
+.login__input:focus ~ .login__label {
+  transform: translateY(-14px);
+  font-size: .688rem;
+}
+
+.login__input:focus {
+  padding-block: 1rem 1rem;
+}
+
+/* Input focus sticky top label */
+.login__input:not(:placeholder-shown).login__input:not(:focus) ~ .login__label {
+  transform: translateY(-12px);
+  font-size: .688rem;
+}
+
+.login__input:not(:placeholder-shown).login__input:not(:focus) {
+  padding-block: 1rem 1rem;
+}
+
+/* Input focus color */
+.login__input:focus {
+  border-color: hsl(208, 92%, 54%);
+}
+
+.login__input:focus ~ .login__label,
+.login__input:focus ~ .login__icon {
+  color:  hsl(208, 92%, 54%);
+}
+
+/* Show hide login & create account */
+.active .login__access {
+  transform: translateX(15rem);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.active .login__register {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: initial;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-inline: 1rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 540px) {
+  .login__area {
+    width: 380px;
+    margin-inline: auto;
+  }
+}
+
+@media screen and (min-width: 350px) and (max-height: 600px) {
+  .login {
+    height: 760px;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .login__area {
+    width: 460px;
+    margin: initial;
+  }
+  .login__access,
+  .login__register {
+    width: 600px;
+  }
+  .login__title {
+    text-align: initial;
+    margin-bottom: 3rem;
+  }
+
+  .login__group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .login__blob {
+    display: block;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .login__img {
+    transform: translate(0rem, 0rem);
+  }
+}
+
+.custom-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff8f0;
+    color: #3e3e3e;
+    border: 2px solid #ff944d;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    opacity: 0;
+    max-width: 90%;
+    width: 400px;
+    transition: opacity 0.4s ease;
+    text-align: center;
+ }
+
+ .custom-popup.show {
+    opacity: 1;
+ }
+
+ .popup-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .popup-text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+ }
+
+ .restaurant-icon {
+    font-size: 3rem;
+    color: #ff944d;
+ }
+
+ .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+ }
+  /* Style de l'icône du calendrier */
+  .login__icon {
+    cursor: pointer; /* Afficher un curseur de main pour montrer qu'on peut cliquer */
+    color:  hsl(220, 15%, 66%);
+}
+
+ /* Style pour le popup */
+ .popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #777;
+}
+
+.popup-title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.popup-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF9119;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popup-button:hover {
+  background-color: #e67e00;
+}
+
