@@ -1,0 +1,84 @@
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<app-header></app-header>
+
+<!--=============== edit plat===============-->
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Edit a plat</h2>
+      <br>
+    </div>
+    <form class="login__form" (ngSubmit)="onSubmit()" #registerForm="ngForm" enctype="multipart/form-data">
+      <div class="login__content grid">
+        <!-- Nom -->
+        <div class="login__box">
+          <input type="text" name="nom" class="login__input"
+                 [(ngModel)]="formData.nom" required
+                 #nom="ngModel" [value]="formData.nom" />
+          <label for="nom" class="login__label">Nom</label>
+          <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="error-message">
+            Le nom est requis
+          </div>
+        </div>
+
+        <!-- Prix -->
+        <div class="login__box">
+          <input type="number" name="prix" class="login__input"
+                 [(ngModel)]="formData.prix" required
+                 #prix="ngModel" [value]="formData.prix" min="0" step="0.01" />
+          <label for="prix" class="login__label">Prix</label>
+          <div *ngIf="prix.invalid && (prix.dirty || prix.touched)" class="error-message">
+            Un prix valide est requis
+          </div>
+        </div>
+
+        <!-- Catégorie -->
+        <div class="login__box">
+          <select name="categorie" class="login__input"
+                  [(ngModel)]="formData.categorie" required
+                  #categorie="ngModel">
+            <option value="" disabled>Choisir une catégorie</option>
+            <option value="HAMBURGER" [selected]="formData.categorie === 'HAMBURGER'">Hamburger</option>
+            <option value="PIZZA" [selected]="formData.categorie === 'PIZZA'">Pizza</option>
+            <option value="PATES" [selected]="formData.categorie === 'PATES'">Pâtes</option>
+            <option value="DESSERT" [selected]="formData.categorie === 'DESSERT'">Dessert</option>
+            <option value="BOISSON" [selected]="formData.categorie === 'BOISSON'">Boisson</option>
+          </select>
+          <label for="categorie" class="login__label">Catégorie</label>
+          <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)" class="error-message">
+            La catégorie est requise
+          </div>
+        </div>
+
+          <!-- Description -->
+          <div class="login__box">
+            <input type="text" name="description" class="login__input"
+                  [(ngModel)]="formData.description" required
+                  #description="ngModel">
+            <label for="description" class="login__label">Description</label>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error-message">
+              La description est requise
+            </div>
+          </div>
+
+        <!-- Image -->
+        <div class="upload-container" id="drop-zone">
+          <input type="file" id="fileInput" name="image" accept="image/*" (change)="onFileSelected($event)" required />
+
+          <label for="fileInput" class="upload-label">
+            <span>Cliquez ou glissez une image ici</span>
+          </label>
+          <div class="preview" id="preview">
+            <!-- Afficher l'image existante ou la nouvelle prévisualisation -->
+            <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview">
+            <div *ngIf="!imagePreview && formData.imageUrl" class="existing-image-notice">
+              Image actuelle conservée (vous pouvez en sélectionner une nouvelle)
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn" [disabled]="registerForm.invalid">Enregistrer les modifications</button>
+      </div>
+    </form>
+  </div>
+</div>

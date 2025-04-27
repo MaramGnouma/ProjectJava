@@ -1,0 +1,55 @@
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<app-header></app-header>
+
+<!--=============== add plat===============-->
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Add a plat</h2>
+      <br>
+    </div>
+    <form class="login__form" (ngSubmit)="onSubmit()" #registerForm="ngForm" enctype="multipart/form-data">
+      <div class="login__content grid">
+        <div class="login__box">
+          <input type="text" name="nom" class="login__input" [(ngModel)]="formData.nom" required />
+          <label for="nom" class="login__label">Nom</label>
+        </div>
+
+        <div class="login__box">
+          <input type="number" name="prix" class="login__input" [(ngModel)]="formData.prix" required />
+          <label for="prix" class="login__label">Prix</label>
+        </div>
+
+        <div class="login__box">
+          <select name="categorie" class="login__input" [(ngModel)]="formData.categorie" required>
+            <option value="" disabled selected hidden>Choisir une catégorie</option>
+            <option value="HAMBURGER">Hamburger</option>
+            <option value="PIZZA">Pizza</option>
+            <option value="PATES">Pâtes</option>
+            <option value="DESSERT">Dessert</option>
+            <option value="BOISSON">Boisson</option>
+          </select>
+          <label for="categorie" class="login__label">Catégorie</label>
+        </div>
+
+        <div class="login__box">
+          <input type="text" name="description" class="login__input" [(ngModel)]="formData.description" required />
+          <label for="description" class="login__label">Description</label>
+        </div>
+
+        <div class="upload-container" id="drop-zone">
+          <!-- Changed this input -->
+          <input type="file" id="fileInput" name="image" accept="image/*" (change)="onFileSelected($event)" required />
+          <label for="fileInput" class="upload-label">
+            <span>Click or drag an image here</span>
+          </label>
+          <div class="preview" id="preview">
+            <!-- Add image preview if you want -->
+            <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview">
+          </div>
+        </div>
+        <button type="submit" class="btn">Envoyer</button>
+      </div>
+    </form>
+  </div>
+</div>

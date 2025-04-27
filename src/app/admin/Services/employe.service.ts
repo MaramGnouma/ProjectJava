@@ -24,17 +24,6 @@ export class EmployeService {
     return this.http.get<Employe[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
-  ajouterEmploye(employe: Employe): Observable<Employe> {
-    return this.http.post<Employe>(`${this.apiUrl}/ajouter`, employe, { headers: this.getHeaders() });
-  }
-
-  modifierEmploye(id: number, employe: Employe): Observable<Employe> {
-    return this.http.put<Employe>(`${this.apiUrl}/${id}`, employe, { headers: this.getHeaders() });
-  }
-
-  supprimerEmploye(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
-  }
 
   accepterEmploye(id: number): Observable<Employe> {
     return this.http.put<Employe>(`${this.apiUrl}/accepter/${id}`, {}, { headers: this.getHeaders() });
@@ -55,5 +44,20 @@ export class EmployeService {
   listerEmployesEnAttente(): Observable<Employe[]> {
     console.log('Token utilisé:', this.authService.getToken());
     return this.http.get<Employe[]>(`${this.apiUrl}/enattente`, { headers: this.getHeaders() });
+  }
+  getAll(): Observable<Employe[]> {
+    return this.http.get<Employe[]>(`${this.apiUrl}/liste`,{ headers: this.getHeaders() });
+  }
+
+  add(employe: Employe): Observable<Employe> {
+    return this.http.post<Employe>(`${this.apiUrl}/ajouter`, employe, { headers: this.getHeaders()});
+  }
+
+  update(id: number, employe: Employe): Observable<Employe> {
+    return this.http.put<Employe>(`${this.apiUrl}/modifier/${id}`, employe, { headers: this.getHeaders() });
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/supprimer/${id}`, { headers: this.getHeaders() });
   }
 }

@@ -12,6 +12,11 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { TableRestaurantComponent } from './layouts/table-restaurant/table-restaurant.component';
+import { AddPlatComponent } from './layouts/plat/addPlat/addPlat.component';
+import { EditPlatComponent } from './layouts/plat/editPlat/editPlat.component';
+import { PlatComponent } from './layouts/plat/plat.component';
+import { EmployesComponent } from './layouts/employes/employes.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     ListeEmployesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TableRestaurantComponent,
+    PlatComponent,
+    AddPlatComponent,
+    EditPlatComponent,
+    EmployesComponent
+
   ],
   imports: [
     CommonModule,
@@ -29,7 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule
   ]
 })
 export class AdminModule { }

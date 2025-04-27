@@ -1,0 +1,218 @@
+<div class="container">
+  <app-header></app-header>
+  <div id="toast-container"></div>
+
+  <main class="main table" id="employes_table">
+    <div class="topbar">
+      <div class="toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </div>
+
+      <div class="user">
+        <img src="assets/imgs/customer01.jpg" alt="">
+      </div>
+    </div>
+
+    <section class="table__header">
+      <h1>Gestion des Employés</h1>
+      <div class="input-group">
+        <!-- <input type="search" placeholder="Rechercher..." (input)="onSearchChange($event)"> -->
+        <img src="assets/search.png" alt="" width="100">
+      </div>
+    </section>
+
+
+
+   <!-- Bouton Ajouter aligné à droite -->
+   <div class="my-3">
+    <button type="button" class="btn btn-outline-success custom-button" data-bs-toggle="modal" data-bs-target="#addEmployee">
+      Ajouter un Employé
+    </button>
+  </div>
+
+<!-- Modal d'ajout -->
+<div class="modal fade custom-modal" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Vérifier que cette balise form est correctement ouverte -->
+      <form (ngSubmit)="ajouter()" #employeeForm="ngForm">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Employé</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-control" [(ngModel)]="nouveauEmploye.nomComplet" name="nom" required #nom="ngModel" pattern="^[a-zA-Zà-ÿÀ-ÿ\s]+$" minlength="3">
+            <!-- Affichage des erreurs -->
+            <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="text-danger">
+              <div *ngIf="nom.errors?.['required']">Le nom est requis.</div>
+              <div *ngIf="nom.errors?.['pattern']">Le nom ne peut contenir que des lettres.</div>
+              <div *ngIf="nom.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</div>
+            </div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <label class="form-label">Téléphone</label>
+            <input type="text" class="form-control" [(ngModel)]="nouveauEmploye.telephone" name="telephone" required #telephone="ngModel" pattern="^[0-9]{8}$">
+            <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="text-danger">
+              <div *ngIf="telephone.errors?.['required']">Le téléphone est requis.</div>
+              <div *ngIf="telephone.errors?.['pattern']">Le numéro de téléphone doit être composé de 8 chiffres.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Sexe</label>
+            <select class="form-select" [(ngModel)]="nouveauEmploye.sexe" name="sexe" required #sexe="ngModel">
+              <option value="" disabled selected>Choisir sexe</option>
+              <option value="Homme">Homme</option>
+              <option value="Femme">Femme</option>
+            </select>
+            <div *ngIf="sexe.invalid && (sexe.dirty || sexe.touched)" class="text-danger">
+              <div *ngIf="sexe.errors?.['required']">Le sexe est requis.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="nouveauEmploye.email" name="email" required #email="ngModel" pattern="^[^@]+@[^@]+\.[^@]+$">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors?.['required']">L'email est requis.</div>
+              <div *ngIf="email.errors?.['pattern']">L'email doit contenir un symbole  valide.</div>
+            </div>
+          </div>
+
+          <!-- Modification pour le rôle -->
+          <div class="mb-3">
+            <label class="form-label">Rôle</label>
+            <select class="form-select" [(ngModel)]="nouveauEmploye.role" name="role" required #role="ngModel">
+              <option value="" disabled selected>Choisir un rôle</option>
+              <option value="Serveur">Serveur</option>
+              <!-- Ajoute d'autres rôles ici si nécessaire -->
+              <option value="Cuisinier">Cuisinier</option>
+              <option value="Caissier">Caissier</option>
+              <option value="Manager">Manager</option>
+            </select>
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="text-danger">
+              <div *ngIf="role.errors?.['required']">Le rôle est requis.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Ajouter</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </form> <!-- Assure-toi que cette balise se ferme ici -->
+    </div>
+  </div>
+</div>
+
+
+
+    <section class="table__body">
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Poste</th>
+            <th>Téléphone</th>
+            <th>Sexe</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of employes">
+            <td>{{e.nomComplet}}</td>
+            <td>{{e.telephone}}</td>
+            <td>{{e.sexe}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.role}}</td>
+            <td class="actions">
+              <span
+                style="cursor: pointer; margin-right: 10px; font-size: 20px;"
+                title="Modifier"
+                (click)="ouvrirModif(e)"
+                data-bs-toggle="modal"
+                data-bs-target="#modEmployee">
+                ✏️
+              </span>
+
+              <span
+                style="cursor: pointer; font-size: 20px;"
+                title="Supprimer"
+                (click)="supprimer(e.id!)">
+                🗑️
+              </span>
+            </td>
+          </tr>
+          <!-- <tr *ngIf="filteredEmployes.length === 0">
+            <td colspan="7" class="empty-table">Aucun employé trouvé</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal de modification -->
+<div class="modal fade custom-modal" id="modEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <form *ngIf="employeAModifier" (ngSubmit)="modifier(employeAModifier)">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier un Employé</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-control" [(ngModel)]="employeAModifier.nomComplet" name="nom" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Téléphone</label>
+            <input type="text" class="form-control" [(ngModel)]="employeAModifier.telephone" name="telephone" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Sexe</label>
+            <select class="form-select" [(ngModel)]="nouveauEmploye.sexe" name="sexe" required>
+              <option value="" disabled selected>Choisir sexe</option>
+              <option value="Homme">Homme</option>
+              <option value="Femme">Femme</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="employeAModifier.email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Rôle</label>
+            <select class="form-select" [(ngModel)]="nouveauEmploye.role" name="role" required>
+              <option value="" disabled selected>Choisir un rôle</option>
+              <option value="Serveur">Serveur</option>
+              <!-- Ajoute d'autres rôles ici si nécessaire -->
+              <option value="Cuisinier">Cuisinier</option>
+              <option value="Caissier">Caissier</option>
+              <option value="Manager">Manager</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,116 @@
+<body>
+  <!-- =============== Navigation ================ -->
+  <div class="container">
+     <app-header></app-header>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+          <div class="topbar">
+              <div class="toggle">
+                  <ion-icon name="menu-outline"></ion-icon>
+              </div>
+
+              <div class="search">
+                  <label>
+                      <input type="text" placeholder="Search here">
+                      <ion-icon name="search-outline"></ion-icon>
+                  </label>
+              </div>
+
+              <div class="user">
+                  <img src="assets/imgs/customer01.jpg" alt="">
+              </div>
+          </div>
+
+          <h2>Gestion des Tables</h2>
+
+  <form [formGroup]="createForm" (ngSubmit)="onCreateTable()" class="create-form">
+    <div class="form-group">
+      <label>Capacité
+        <input type="number" formControlName="capacite" min="1" placeholder="Ex: 4 personnes">
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Emplacement
+        <select formControlName="emplacement">
+          <option value="INTERIEUR">Intérieur</option>
+          <option value="EXTERIEUR">Extérieur</option>
+          <option value="VUE_SUR_MER">Vue sur mer</option>
+        </select>
+      </label>
+    </div>
+    <button type="submit" class="btn-primary">Créer Table</button>
+  </form>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Capacité</th>
+        <th>Emplacement</th>
+        <th>Statut</th>
+        <th>Réservation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let table of tables">
+        <td>{{ table.id }}</td>
+        <td>{{ table.capacite }}</td>
+        <td>{{ table.emplacement }}</td>
+        <td>
+          <span [style.color]="statutColor(table.statut)" class="statut">{{ table.statut }}</span>
+        </td>
+        <td>
+          <div *ngIf="table.reservation">
+            <strong>{{ table.reservation.nomClient }} {{ table.reservation.prenomClient }}</strong><br>
+            <small>{{ table.reservation.dateHeure | date:'short' }}</small>
+          </div>
+          <div *ngIf="!table.reservation">-</div>
+        </td>
+        <td>
+          <!-- Si table est en attente : bouton confirmer seulement -->
+          <button class="btn-primary" (click)="confirmReservation(table.id)" *ngIf="table.statut === 'EN_ATTENTE'">
+            Confirmer
+          </button>
+
+          <!-- Si table est libre : bouton modifier + supprimer -->
+          <div *ngIf="table.statut === 'LIBRE'">
+            <button class="btn-secondary" (click)="onEditTable(table)">Modifier</button>
+            <button class="btn-danger" (click)="onDeleteTable(table.id)">Supprimer</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal pour modification -->
+<div *ngIf="selectedTable && selectedTable.statut === 'LIBRE'" class="modal">
+  <div class="modal-content">
+    <h3>Modifier Table #{{ selectedTable.id }}</h3>
+    <form [formGroup]="editForm" (ngSubmit)="onUpdateTable()" class="modal-form">
+      <label>Capacité
+        <input type="number" formControlName="capacite" placeholder="Nouvelle capacité">
+      </label>
+      <label>Emplacement
+        <select formControlName="emplacement">
+          <option value="INTERIEUR">Intérieur</option>
+          <option value="EXTERIEUR">Extérieur</option>
+          <option value="VUE_SUR_MER">Vue sur mer</option>
+        </select>
+      </label>
+      <div class="modal-buttons">
+        <button type="submit" class="btn-primary">Valider</button>
+        <button type="button" (click)="selectedTable = null" class="btn-warning">Annuler</button>
+      </div>
+    </form>
+    </div>
+      </div>
+  </div>
+
+  <!-- ====== ionicons ======= -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+

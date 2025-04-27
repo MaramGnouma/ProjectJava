@@ -1,0 +1,107 @@
+<body>
+  <!-- =============== Navigation ================ -->
+  <div class="container">
+    <app-header></app-header>
+
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+          <div class="topbar">
+              <div class="toggle">
+              </div>
+
+              <div class="search">
+                  <label>
+                      <input type="text" placeholder="Search here">
+                  </label>
+              </div>
+
+              <div class="user">
+                  <img src="assets/imgs/customer01.jpg" alt="">
+              </div>
+          </div>
+
+
+          <!-- ================ Order Details List ================= -->
+          <div class="details">
+              <div class="recentOrders">
+                  <div class="cardHeader">
+                      <h2>Menu</h2>
+                      <a href="/admin/plats/addPlat" class="btn">+ Ajouter</a>
+                  </div>
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>Image</td>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Category</td>
+                        <td>Status</td>
+                        <td>Actions</td> <!-- New column header -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let plat of plats">
+                        <td width="10px">
+                          <div class="imgBx"><img src={{plat.image}} alt=""></div>
+                        </td>
+                        <td>{{ plat.nom }}</td>
+                        <td>{{ plat.prix }}</td>
+                        <td>{{ plat.categorie }}</td>
+                        <td><span class="status delivered">Disponible</span></td>
+                        <td>
+                          <!-- Action dropdown -->
+                          <div class="action-dropdown">
+                            <button class="action-btn">⋮</button>
+                            <div class="action-menu">
+                              <button (click)="editPlat(plat)">Edit</button>
+                              <button (click)="deletePlat(plat)" class="delete-btn">Delete</button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+              <!-- ================= New Customers ================ -->
+              <div class="recentCustomers">
+                  <div class="cardHeader">
+                      <h2>Category</h2>
+                  </div>
+
+                  <table>
+                      <tr>
+
+                          <td>
+                              <h4>Hamberger</h4>
+                          </td>
+                      </tr>
+
+                      <tr>
+
+                          <td>
+                              <h4> fast food</h4>
+                          </td>
+                      </tr>
+
+                      <tr>
+
+                          <td>
+                              <h4>plat pricipale</h4>
+                          </td>
+                      </tr>
+
+
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- ====== ionicons ======= -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
