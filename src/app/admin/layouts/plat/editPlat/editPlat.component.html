@@ -37,10 +37,9 @@
           <select name="categorie" class="login__input"
                   [(ngModel)]="formData.categorie" required
                   #categorie="ngModel">
-            <option value="" disabled>Choisir une catégorie</option>
-            <option value="HAMBURGER" [selected]="formData.categorie === 'HAMBURGER'">Hamburger</option>
-            <option value="PIZZA" [selected]="formData.categorie === 'PIZZA'">Pizza</option>
-            <option value="PATES" [selected]="formData.categorie === 'PATES'">Pâtes</option>
+            <option value="FASTFOOD" [selected]="formData.categorie === 'FASTFOOD'">Fast Food</option>
+            <option value="PLATPRINCIPALE" [selected]="formData.categorie === 'PLATPRINCIPALE'">Plat Principale</option>
+            <option value="SALADE" [selected]="formData.categorie === 'SALADE'">Salade</option>
             <option value="DESSERT" [selected]="formData.categorie === 'DESSERT'">Dessert</option>
             <option value="BOISSON" [selected]="formData.categorie === 'BOISSON'">Boisson</option>
           </select>

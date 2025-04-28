@@ -65,37 +65,47 @@
                   </table>
               </div>
 
-              <!-- ================= New Customers ================ -->
-              <div class="recentCustomers">
-                  <div class="cardHeader">
-                      <h2>Category</h2>
-                  </div>
+           <!-- ================= CATEGORIE ================ -->
+<div class="recentCustomers">
+  <div class="cardHeader">
+      <h2>Category</h2>
+  </div>
 
-                  <table>
-                      <tr>
+  <table>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('TOUT')" [ngClass]="{'active-categorie': activeCategorie === 'TOUT'}">Tout</h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('FASTFOOD')" [ngClass]="{'active-categorie': activeCategorie === 'FASTFOOD'}">Fast Food</h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('PLATPRINCIPALE')" [ngClass]="{'active-categorie': activeCategorie === 'PLATPRINCIPALE'}">Plat Principal</h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('SALADE')" [ngClass]="{'active-categorie': activeCategorie === 'SALADE'}">Salades</h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('DESSERT')" [ngClass]="{'active-categorie': activeCategorie === 'DESSERT'}">Dessert</h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4 (click)="filterByCategorie('BOISSON')" [ngClass]="{'active-categorie': activeCategorie === 'BOISSON'}">Boissons</h4>
+      </td>
+    </tr>
+  </table>
 
-                          <td>
-                              <h4>Hamberger</h4>
-                          </td>
-                      </tr>
+</div>
 
-                      <tr>
-
-                          <td>
-                              <h4> fast food</h4>
-                          </td>
-                      </tr>
-
-                      <tr>
-
-                          <td>
-                              <h4>plat pricipale</h4>
-                          </td>
-                      </tr>
-
-
-                  </table>
-              </div>
           </div>
       </div>
   </div>
@@ -104,4 +114,3 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-

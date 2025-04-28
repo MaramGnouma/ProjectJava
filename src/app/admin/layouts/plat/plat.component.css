@@ -347,25 +347,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
-.recentCustomers table tr td {
-  padding: 12px 10px;
-}
-.recentCustomers table tr td h4 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1rem;
-}
-.recentCustomers table tr td h4 span {
-  font-size: 14px;
-  color: var(--black2);
-}
-.recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-.recentCustomers table tr:hover td h4 span {
-  color: var(--white);
-}
+
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -429,7 +411,38 @@ body {
     left: initial;
   }
 }
-/* Ajoutez ce code à votre fichier style.css */
 
-/* Style pour le logo avec transition douce */
+/* ====================== Categorie selected ========================== */
+.active-categorie {
+  background-color: #e8b697; /* 🌟 Couleur de fond pour la catégorie active */
+  padding: 10px;
+  padding-left:20px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #fcfcfc;
+}
+
+h4 {
+  cursor: pointer; /* Pour que toutes les catégories aient le curseur */
+}
+.recentCustomers table tr td {
+  padding: 12px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+table tr:hover {
+  background:#e8b697;
+  color: var(--white);
+  padding-left:20px;}
+.recentCustomers table tr:hover td h4 span {
+  color: var(--white);
+}
+
 

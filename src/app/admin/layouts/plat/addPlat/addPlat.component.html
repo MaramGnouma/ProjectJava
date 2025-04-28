@@ -1,54 +1,73 @@
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 <app-header></app-header>
 
-<!--=============== add plat===============-->
+<!--=============== Add Plat Section ===============-->
 <div class="details">
   <div class="recentOrders">
     <div class="cardHeader">
       <h2>Add a plat</h2>
       <br>
     </div>
-    <form class="login__form" (ngSubmit)="onSubmit()" #registerForm="ngForm" enctype="multipart/form-data">
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" enctype="multipart/form-data" class="login__form">
       <div class="login__content grid">
+
+        <!-- Nom -->
         <div class="login__box">
           <input type="text" name="nom" class="login__input" [(ngModel)]="formData.nom" required />
           <label for="nom" class="login__label">Nom</label>
         </div>
 
+        <!-- Prix -->
         <div class="login__box">
           <input type="number" name="prix" class="login__input" [(ngModel)]="formData.prix" required />
           <label for="prix" class="login__label">Prix</label>
         </div>
 
+        <!-- Catégorie -->
         <div class="login__box">
           <select name="categorie" class="login__input" [(ngModel)]="formData.categorie" required>
             <option value="" disabled selected hidden>Choisir une catégorie</option>
-            <option value="HAMBURGER">Hamburger</option>
-            <option value="PIZZA">Pizza</option>
-            <option value="PATES">Pâtes</option>
+            <option value="FASTFOOD">Fast Food</option>
+            <option value="PLATPRINCIPALE">Plat Principale</option>
+            <option value="SALADE">Salade</option>
             <option value="DESSERT">Dessert</option>
             <option value="BOISSON">Boisson</option>
+
           </select>
           <label for="categorie" class="login__label">Catégorie</label>
         </div>
 
+        <!-- Description -->
         <div class="login__box">
           <input type="text" name="description" class="login__input" [(ngModel)]="formData.description" required />
           <label for="description" class="login__label">Description</label>
         </div>
 
+        <!-- Image Upload -->
         <div class="upload-container" id="drop-zone">
-          <!-- Changed this input -->
-          <input type="file" id="fileInput" name="image" accept="image/*" (change)="onFileSelected($event)" required />
+          <input
+            type="file"
+            id="fileInput"
+            name="image"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            required
+          />
           <label for="fileInput" class="upload-label">
             <span>Click or drag an image here</span>
           </label>
+
+          <!-- Preview -->
           <div class="preview" id="preview">
-            <!-- Add image preview if you want -->
-            <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview">
+            <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview" />
           </div>
         </div>
+
+        <!-- Submit Button -->
         <button type="submit" class="btn">Envoyer</button>
+
       </div>
     </form>
   </div>

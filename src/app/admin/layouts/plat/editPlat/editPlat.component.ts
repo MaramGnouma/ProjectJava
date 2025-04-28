@@ -23,37 +23,35 @@ export class EditPlatComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
- private router: Router,
-     private authService: AuthService
-
+    private router: Router,
+    private authService: AuthService
   ) {}
-private getHeaders(): HttpHeaders {
+
+  // ✅ Ne pas mettre Content-Type ici, uniquement Authorization
+  private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     return new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
   }
+
   ngOnInit(): void {
-    // 1. Récupérer l'ID depuis l'URL
     this.platId = this.route.snapshot.paramMap.get('id');
 
     if (this.platId) {
-      // 2. Charger les données du plat
       this.http.get(`http://localhost:9010/api/plats/${this.platId}`, { headers: this.getHeaders() })
         .subscribe({
           next: (plat: any) => {
-            // 3. Pré-remplir le formulaire
             this.formData = {
               nom: plat.nom,
               prix: plat.prix,
               categorie: plat.categorie,
-              description: plat.description
+              description: plat.description,
+              image: null // on réinitialise pour éviter de mettre une chaîne base64 dans FormData
             };
-
-            // Si vous voulez aussi afficher l'image existante
+            // ✅ Afficher l'image existante si disponible
             if (plat.image) {
-              this.imagePreview = plat.image; // Adaptez selon votre structure de données
+              this.imagePreview = plat.image; // Si c'est une URL ou un base64
             }
           },
           error: (err) => {
@@ -68,7 +66,6 @@ private getHeaders(): HttpHeaders {
     if (file) {
       this.formData.image = file;
 
-      // Aperçu de l'image
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result;

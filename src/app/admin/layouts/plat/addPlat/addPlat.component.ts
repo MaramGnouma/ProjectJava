@@ -4,23 +4,12 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/Services/auth.service';
 
 @Component({
-  selector: 'app-addPlat',
+  selector: 'app-add-plat',
   templateUrl: './addPlat.component.html',
   styleUrls: ['./addPlat.component.css']
 })
 export class AddPlatComponent {
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
-
-  private getHeaders(): HttpHeaders {
-    const token = this.authService.getToken();
-    console.log('Token:', token); // Debugging line
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-  }
-
-  formData: { nom: string, prix: string, categorie: string, description: string } = {
+  formData = {
     nom: '',
     prix: '',
     categorie: '',
@@ -30,12 +19,24 @@ export class AddPlatComponent {
   selectedImage: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
 
-  onFileSelected(event: any) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}` // ✅ CORRIGÉ : Ajout des backticks `` pour le template string
+    });
+  }
+
+  onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.selectedImage = file;
 
-      // Create image preview
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result;
@@ -44,9 +45,9 @@ export class AddPlatComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (!this.selectedImage) {
-      this.showAlert('Please select an image', 'error');
+      this.showAlert('Please select an image.', 'error');
       return;
     }
 
@@ -55,26 +56,26 @@ export class AddPlatComponent {
     formDataToSend.append('prix', this.formData.prix);
     formDataToSend.append('categorie', this.formData.categorie);
     formDataToSend.append('description', this.formData.description);
-    formDataToSend.append('image', this.selectedImage, this.selectedImage.name);
-    console.log('Form Data:', this.selectedImage.name); // Debugging line
+    formDataToSend.append('image', this.selectedImage);
+
     this.http.post('http://localhost:9010/api/plats', formDataToSend, {
-      headers: this.getHeaders() // Just pass the token, don't set Content-Type manually
+      headers: this.getHeaders()
     }).subscribe(
-      response => {
+      (response: any) => {
         console.log('Success:', response);
         this.showAlert('Dish added successfully!', 'success');
         this.resetForm();
-        this.router.navigate(['/plats']);
+        this.router.navigate(['/admin/plats']);
       },
-      error => {
+      (error) => {
         console.error('Error:', error);
         let errorMessage = 'An unexpected error occurred';
         if (error.status === 400) {
-          errorMessage = 'This dish name already exists';
+          errorMessage = 'This dish name already exists.';
         } else if (error.status === 401) {
-          errorMessage = 'Unauthorized access';
+          errorMessage = 'Unauthorized access.';
         } else if (error.status === 500) {
-          errorMessage = 'Server error, please try again later';
+          errorMessage = 'Server error, please try again later.';
         }
         this.showAlert(errorMessage, 'error');
       }
@@ -89,7 +90,7 @@ export class AddPlatComponent {
     alertBox.style.padding = '15px 25px';
     alertBox.style.background = type === 'success' ? '#e8f5e9' : '#ffebee';
     alertBox.style.color = type === 'success' ? '#2e7d32' : '#c62828';
-    alertBox.style.borderLeft = `4px solid ${type === 'success' ? '#2e7d32' : '#c62828'}`;
+    alertBox.style.borderLeft = `4px solid ${type === 'success' ? '#2e7d32' : '#c62828'}`; // ✅ CORRIGÉ : Ajout des backticks
     alertBox.style.borderRadius = '4px';
     alertBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     alertBox.style.zIndex = '1000';
@@ -118,7 +119,7 @@ export class AddPlatComponent {
     }, 3000);
   }
 
-  resetForm() {
+  private resetForm() {
     this.formData = {
       nom: '',
       prix: '',
