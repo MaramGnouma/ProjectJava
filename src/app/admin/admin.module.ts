@@ -17,6 +17,7 @@ import { AddPlatComponent } from './layouts/plat/addPlat/addPlat.component';
 import { EditPlatComponent } from './layouts/plat/editPlat/editPlat.component';
 import { PlatComponent } from './layouts/plat/plat.component';
 import { EmployesComponent } from './layouts/employes/employes.component';
+import { CommandeComponent } from './layouts/commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { EmployesComponent } from './layouts/employes/employes.component';
     PlatComponent,
     AddPlatComponent,
     EditPlatComponent,
-    EmployesComponent
+    EmployesComponent,
+    CommandeComponent
+
 
   ],
   imports: [

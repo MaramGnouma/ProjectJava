@@ -1,18 +1,44 @@
-<div class="container">
-  <app-header></app-header>
-  <div id="toast-container"></div>
 
-  <!-- ========================= Main ==================== -->
-  <main class="main table" id="employes_table">
-    <div class="topbar">
-      <div class="toggle">
-        <ion-icon name="menu-outline"></ion-icon>
-      </div>
+<body>
+  <!-- =============== Navigation ================ -->
+   <div *ngIf="isLoading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div>
 
-      <div class="user">
-        <img src="assets/imgs/customer01.jpg" alt="">
-      </div>
-    </div>
+  <div class="container">
+     <app-header></app-header>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+          <div class="topbar">
+              <div class="toggle">
+                  <ion-icon name="menu-outline"></ion-icon>
+              </div>
+
+              <div class="search">
+                  <label>
+                      <input type="text" placeholder="Search here">
+                      <ion-icon name="search-outline"></ion-icon>
+                  </label>
+              </div>
+
+              <div class="user-dropdown" (click)="toggleDropdown()" tabindex="0">
+               <div style=" display: flex; align-items: center;gap:5px">
+                <h4>{{ nomEmploye }}</h4>
+                <img [src]="employeImageUrl" alt="User" class="user-img" />
+               </div>
+                <div class="dropdown-menu" [class.show]="dropdownVisible">
+                  <div class="dropdown-header">
+                    <img src="../../../../assets/9703596.png" alt="User" class="dropdown-img" />
+                    <span>{{ nomEmploye }}</span>
+                  </div>
+                  <a href="#" (click)="showProfilEmploye($event)">👤 Profil</a>
+                  <a  (click)="logout()">🚪 Déconnexion</a>
+
+                </div>
+              </div>
+
+          </div>
 
     <section class="table__header">
       <h1>Gestion des Employés</h1>
@@ -50,7 +76,7 @@
                    height="24"
                    alt="Accepter"
                    style="margin-right: 15px;"
-                   (click)="accepterEmploye(employe.id)"
+                   (click)="accepterEmploye(employe.id!)"
                    title="Accepter">
 
               <img
@@ -59,7 +85,7 @@
                    height="24"
                    alt="Refuser"
                    style="margin-right: 15px;"
-                   (click)="openRefusModal(employe.id)"
+                   (click)="openRefusModal(employe.id!)"
                    title="Refuser">
 
               <img src="assets/icone/info.png"
@@ -78,6 +104,5 @@
         </tbody>
       </table>
     </section>
-  </main>
 </div>
 

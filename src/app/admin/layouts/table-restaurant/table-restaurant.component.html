@@ -1,3 +1,4 @@
+
 <body>
   <!-- =============== Navigation ================ -->
   <div class="container">
@@ -17,11 +18,23 @@
                   </label>
               </div>
 
-              <div class="user">
-                  <img src="assets/imgs/customer01.jpg" alt="">
-              </div>
-          </div>
+              <div class="user-dropdown" (click)="toggleDropdown()" tabindex="0">
+               <div style=" display: flex; align-items: center;gap:5px">
+                <h4>{{ nomEmploye }}</h4>
+                <img [src]="employeImageUrl" alt="User" class="user-img" />
+               </div>
+                <div class="dropdown-menu" [class.show]="dropdownVisible">
+                  <div class="dropdown-header">
+                    <img src="../../../../assets/9703596.png" alt="User" class="dropdown-img" />
+                    <span>{{ nomEmploye }}</span>
+                  </div>
+                  <a href="#" (click)="showProfilEmploye($event)">👤 Profil</a>
+                  <a  (click)="logout()">🚪 Déconnexion</a>
 
+                </div>
+              </div>
+
+          </div>
           <h2>Gestion des Tables</h2>
 
   <form [formGroup]="createForm" (ngSubmit)="onCreateTable()" class="create-form">

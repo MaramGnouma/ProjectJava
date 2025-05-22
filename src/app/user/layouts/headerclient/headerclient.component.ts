@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-headerclient',
@@ -7,98 +8,122 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 })
 export class HeaderclientComponent implements OnInit, AfterViewInit {
 
-  isConnected = false;  // Simuler l'état : faux = pas connecté
+  cartItems: any[] = [];
+  clientId: string | null = '';
+  isConnected: boolean = false;
+  clientData: any = null;
+  showCart: boolean = false;
+
+  @ViewChild('popupWrapper') popupWrapper!: ElementRef;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Ici plus besoin de showCorrectPopup(), l'affichage se gère au clic sur profileBtn
-  }
+    const sessionClient = sessionStorage.getItem('clientConnecte');
 
-  ngAfterViewInit(): void {
-    this.setupMenuToggle();
-    this.setupDropdown();
-    this.setupProfileClickHandler(); // Renommé car plus logique
-    this.setupOutsideClickHandlers();
-  }
-
-   setupMenuToggle(): void {
-    const navMenu = document.getElementById('nav-menu');
-    const navToggle = document.getElementById('nav-toggle');
-    const navClose = document.getElementById('nav-close');
-
-    if (navToggle) {
-      navToggle.addEventListener('click', () => navMenu?.classList.add('show-menu'));
-    }
-
-    if (navClose) {
-      navClose.addEventListener('click', () => navMenu?.classList.remove('show-menu'));
-    }
-
-    document.querySelectorAll('.nav__link').forEach(link =>
-      link.addEventListener('click', () => navMenu?.classList.remove('show-menu'))
-    );
-  }
-
-   setupDropdown(): void {
-    const dropdown = document.getElementById('dropdown');
-    dropdown?.addEventListener('click', () => {
-      dropdown.classList.toggle('show-dropdown');
-    });
-  }
-
-   setupProfileClickHandler(): void {
-    const profileBtn = document.getElementById('profileBtn');
-    profileBtn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.showCorrectPopup();
-    });
-  }
-
-   setupOutsideClickHandlers(): void {
-    window.addEventListener('click', (event) => {
-      const profilePopup = document.getElementById('profilePopup');
-      const notConnectedPopup = document.getElementById('notConnectedPopup');
-
-      if (event.target === profilePopup) {
-        this.closeProfilePopup();
-      }
-
-      if (event.target === notConnectedPopup) {
-        this.closeNotConnectedPopup();
-      }
-    });
-  }
-
-   showCorrectPopup(): void {
-    if (this.isConnected) {
-      this.openProfilePopup();
+    if (sessionClient) {
+      this.clientData = JSON.parse(sessionClient);
+      this.clientId = this.clientData.id;
+      this.isConnected = true;
     } else {
-      this.openNotConnectedPopup();
+      this.clientId = localStorage.getItem('idClient');
+      this.isConnected = this.clientId !== null;
+
+      if (this.isConnected && this.clientId) {
+        this.loadClientData(this.clientId);
+      }
+    }
+
+    this.loadCart();
+  }
+
+  ngAfterViewInit(): void {}
+
+  loadClientData(id: string) {
+    this.http.get(`http://localhost:9010/api/client/${id}`).subscribe({
+      next: (data) => {
+        this.clientData = data;
+        console.log('Client data:', data);
+      },
+      error: (err) => {
+        console.error('Erreur chargement client :', err);
+      }
+    });
+  }
+
+  toggleCart(event: MouseEvent): void {
+    this.showCart = !this.showCart;
+    event.stopPropagation();
+    if (this.showCart) {
+      this.loadCart();
     }
   }
 
-   openProfilePopup(): void {
-    const profilePopup = document.getElementById('profilePopup');
-    if (profilePopup) {
-      profilePopup.style.display = 'flex';
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    if (this.popupWrapper && !this.popupWrapper.nativeElement.contains(event.target)) {
+      this.showCart = false;
     }
   }
 
-   closeProfilePopup(): void {
-    const profilePopup = document.getElementById('profilePopup');
-    if (profilePopup) {
-      profilePopup.style.display = 'none';
-    }
+  loadCart(): void {
+    const storedCart = localStorage.getItem('cart');
+    this.cartItems = storedCart ? JSON.parse(storedCart) : [];
   }
 
-   openNotConnectedPopup(): void {
-    const notConnectedPopup = document.getElementById('notConnectedPopup');
-    if (notConnectedPopup) {
-      notConnectedPopup.style.display = 'flex';
-    }
+  getTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
-   closeNotConnectedPopup(): void {
-    const popup = document.getElementById('notConnectedPopup');
-    if (popup) popup.style.display = 'none';
+  close(): void {
+    this.showCart = false;
+  }
+
+  commander(): void {
+    if (!this.isConnected) {
+      alert('Veuillez vous connecter avant de commander.');
+      return;
+    }
+
+    const orderData = {
+      client_id: this.clientId,
+      plats: this.cartItems.map(item => ({
+        idPlat: item.id,
+        quantity: item.quantity
+      })),
+      total: this.getTotal()
+    };
+
+    this.http.post(`http://localhost:9010/api/commandes/create`, orderData).subscribe({
+      next: () => {
+        alert('Commande passée avec succès.');
+        localStorage.removeItem('cart');
+        this.cartItems = [];
+        this.showCart = false;
+      },
+      error: (err) => {
+        alert('Erreur lors de la commande.');
+        console.error(err);
+      }
+    });
+  }
+
+  annuler(): void {
+    localStorage.removeItem('cart');
+    this.cartItems = [];
+    this.showCart = false;
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('clientConnecte');
+    localStorage.removeItem('idClient');
+    this.isConnected = false;
+    this.clientData = null;
+    window.location.href = '/login';
+  }
+
+  openProfile(): void {
+    alert('Ouverture du profil utilisateur.');
+    // Tu peux ici ouvrir un popup ou une page de profil
   }
 }

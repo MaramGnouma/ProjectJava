@@ -47,13 +47,88 @@ export class LoginComponent {
     }
   }
 
+  /**
+   * Décode un token JWT et retourne son contenu
+   * @param token Le token JWT à décoder
+   * @returns Le contenu décodé du token
+   */
+  decodeJwtToken(token: string): any {
+    try {
+      // Le token JWT est composé de 3 parties séparées par des points
+      const parts = token.split('.');
+      if (parts.length !== 3) {
+        console.error('Format de token invalide');
+        return null;
+      }
+
+      // La deuxième partie contient les données (payload)
+      const payload = parts[1];
+
+      // Décodage de la partie payload (Base64URL)
+      const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+          .join('')
+      );
+
+      // Conversion en objet JavaScript
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('Erreur lors du décodage du token JWT:', error);
+      return null;
+    }
+  }
+
   onSubmitLogin() {
     this.authService.signin(this.form)
       .subscribe({
         next: (response) => {
-          console.log('✅ Connexion réussie :', response, response.token);
+          console.log('✅ Connexion réussie :', response);
 
-          this.router.navigate(['/admin/']); // redirection vers la page d'accueil
+          // Vider le sessionStorage avant de stocker les nouvelles données
+          sessionStorage.clear();
+
+          // Récupérer le token
+          const token = response.token;
+          if (!token) {
+            console.error('Aucun token dans la réponse');
+            return;
+          }
+
+          // Décoder le token pour extraire les informations de l'employé
+          const decodedToken = this.decodeJwtToken(token);
+          console.log('Token décodé:', decodedToken);
+
+          if (!decodedToken) {
+            console.error('Impossible de décoder le token');
+            return;
+          }
+
+          // Créer l'objet employé à partir des données du token
+          const employeData = {
+            id: decodedToken.id || '',
+            nom_complet: decodedToken.nomComplet || '',
+            email: decodedToken.email || this.form.email,
+            role: decodedToken.role || '',
+            status: decodedToken.status || '',
+            // Ajouter d'autres champs si disponibles dans le token
+            token: token // Conserver le token pour les futures requêtes
+          };
+
+          // Affichage des données pour débogage
+          console.log('Données employé extraites du token:', employeData);
+
+          // Sauvegarde dans sessionStorage
+          sessionStorage.setItem('emp', JSON.stringify(employeData));
+
+          // Vérification que les données ont bien été sauvegardées
+          const savedData = sessionStorage.getItem('emp');
+          console.log('Données sauvegardées en session:', savedData);
+
+          // Redirection vers la page d'accueil
+          this.router.navigate(['/admin/']);
 
           // Pop-up de réussite avec SweetAlert2
           Swal.fire({

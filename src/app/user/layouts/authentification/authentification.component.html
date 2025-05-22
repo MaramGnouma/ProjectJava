@@ -1,0 +1,111 @@
+<body>
+<div class="container" [class.active]="isActive">
+  <!-- Sign Up Form -->
+  <div class="form-container sign-up">
+    <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" enctype="multipart/form-data">
+      <h1>Create Account</h1>
+
+      <div class="input-container">
+        <i class="fas fa-user"></i>
+        <input type="text" formControlName="nom" placeholder="Nom" />
+        <div *ngIf="signupForm.get('nom')?.invalid && signupForm.get('nom')?.touched" class="error-message">
+          Veuillez entrer votre nom
+        </div>
+      </div>
+
+      <div class="input-container">
+        <i class="fas fa-user"></i>
+        <input type="text" formControlName="prenom" placeholder="Prénom" />
+        <div *ngIf="signupForm.get('prenom')?.invalid && signupForm.get('prenom')?.touched" class="error-message">
+          Veuillez entrer votre prénom
+        </div>
+      </div>
+
+      <div class="input-container">
+        <i class="fas fa-envelope"></i>
+        <input type="email" formControlName="email" placeholder="Email" />
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
+          Veuillez entrer un email valide
+        </div>
+      </div>
+
+      <div class="input-container" style="position: relative;">
+        <i class="fas fa-lock"></i>
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Mot de passe" />
+        <span class="eye-icon" (click)="togglePasswordVisibility()">
+          <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#666">
+            <path d="M12 4.5C7 4.5 2.73 7.61 1 12..."/>
+          </svg>
+          <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#666">
+            <path d="M12 6.5c3.31 0 6.31 2.19..."/>
+          </svg>
+        </span>
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+          Le mot de passe doit contenir au moins 8 caractères
+        </div>
+      </div>
+
+      <div class="input-container">
+        <i class="fas fa-phone"></i>
+        <input type="tel" formControlName="telephone" placeholder="Téléphone" />
+        <div *ngIf="signupForm.get('telephone')?.invalid && signupForm.get('telephone')?.touched" class="error-message">
+          Le numéro doit contenir 8 chiffres
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="signupForm.invalid || isSubmitting">S'inscrire</button>
+    </form>
+  </div>
+
+  <!-- Sign In Form -->
+  <div class="form-container sign-in">
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+      <h1>Sign In</h1>
+
+      <div class="input-container">
+        <i class="fas fa-envelope"></i>
+        <input type="email" formControlName="loginEmail" placeholder="Email" />
+        <div *ngIf="loginForm.get('loginEmail')?.invalid && loginForm.get('loginEmail')?.touched" class="error-message">
+          Veuillez entrer un email valide
+        </div>
+      </div>
+
+      <div class="input-container" style="position: relative;">
+        <i class="fas fa-lock"></i>
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="loginPassword" placeholder="Mot de passe" />
+        <span class="eye-icon" (click)="togglePasswordVisibility()">
+          <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#666">
+            <path d="M12 4.5C7 4.5 2.73 7.61..."/>
+          </svg>
+          <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#666">
+            <path d="M12 6.5c3.31 0 6.31 2.19..."/>
+          </svg>
+        </span>
+        <div *ngIf="loginForm.get('loginPassword')?.invalid && loginForm.get('loginPassword')?.touched" class="error-message">
+          Veuillez entrer votre mot de passe
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid || isSubmitting">Se connecter</button>
+    </form>
+  </div>
+
+  <!-- Toggle Part -->
+  <div class="toggle-container">
+    <div class="toggle">
+      <div class="toggle-panel toggle-left">
+        <img src="../../../../assets/logo.png" width="150" height="150" alt="Logo">
+        <h1>Welcome Back!</h1>
+        <p>Connectez-vous pour accéder à toutes les fonctionnalités</p>
+        <button (click)="toggleActive(false)">Se connecter</button>
+      </div>
+      <div class="toggle-panel toggle-right">
+        <img src="../../../../assets/logo.png" width="150" height="150" alt="Logo">
+        <h1>Hello, Friend!</h1>
+        <p>Créez un compte pour profiter de toutes les fonctionnalités</p>
+        <button (click)="toggleActive(true)">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

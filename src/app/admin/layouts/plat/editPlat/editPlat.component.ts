@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/Services/auth.service';
 
 @Component({
@@ -39,25 +38,26 @@ export class EditPlatComponent implements OnInit {
     this.platId = this.route.snapshot.paramMap.get('id');
 
     if (this.platId) {
-      this.http.get(`http://localhost:9010/api/plats/${this.platId}`, { headers: this.getHeaders() })
-        .subscribe({
-          next: (plat: any) => {
-            this.formData = {
-              nom: plat.nom,
-              prix: plat.prix,
-              categorie: plat.categorie,
-              description: plat.description,
-              image: null // on réinitialise pour éviter de mettre une chaîne base64 dans FormData
-            };
-            // ✅ Afficher l'image existante si disponible
-            if (plat.image) {
-              this.imagePreview = plat.image; // Si c'est une URL ou un base64
-            }
-          },
-          error: (err) => {
-            console.error('Erreur lors du chargement du plat', err);
+      this.http.get(`http://localhost:9010/api/plats/${this.platId}`, {
+        headers: this.getHeaders()
+      }).subscribe({
+        next: (plat: any) => {
+          this.formData = {
+            nom: plat.nom,
+            prix: plat.prix,
+            categorie: plat.categorie,
+            description: plat.description,
+            image: null // On ne pré-remplit pas le fichier ici
+          };
+
+          if (plat.image) {
+            this.imagePreview = plat.image; // Affiche l'image existante
           }
-        });
+        },
+        error: (err) => {
+          console.error('Erreur lors du chargement du plat', err);
+        }
+      });
     }
   }
 
@@ -86,15 +86,16 @@ export class EditPlatComponent implements OnInit {
       formPayload.append('image', this.formData.image);
     }
 
-    this.http.put(`http://localhost:9010/api/plats/${this.platId}`, formPayload, { headers: this.getHeaders() })
-      .subscribe({
-        next: (response) => {
-          alert('Plat mis à jour avec succès!');
-          this.router.navigate(['/admin/plats']);
-        },
-        error: (err) => {
-          console.error('Erreur lors de la mise à jour', err);
-        }
-      });
+    this.http.put(`http://localhost:9010/api/plats/${this.platId}`, formPayload, {
+      headers: this.getHeaders()
+    }).subscribe({
+      next: () => {
+        alert('Plat mis à jour avec succès!');
+        this.router.navigate(['/admin/plats']);
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour', err);
+      }
+    });
   }
 }

@@ -103,8 +103,8 @@ body {
   background-color: #f5f5f5;
 }
 
-.delete-btn {
-  color: #e74c3c !important;
+.done-btn {
+  color: #00670a !important;
 }
 
 .action-dropdown:hover .action-menu,
@@ -448,3 +448,4 @@ table tr:hover {
 /* Ajoutez ce code à votre fichier style.css */
 
 /* Style pour le logo avec transition douce */
+

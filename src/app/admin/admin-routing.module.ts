@@ -9,24 +9,25 @@ import { TableRestaurantComponent } from './layouts/table-restaurant/table-resta
 import { AddPlatComponent } from './layouts/plat/addPlat/addPlat.component';
 import { EditPlatComponent } from './layouts/plat/editPlat/editPlat.component';
 import { PlatComponent } from './layouts/plat/plat.component';
+import { AuthGuard } from './Services/auth.guard';
 import { EmployesComponent } from './layouts/employes/employes.component';
+import { CommandeComponent } from './layouts/commande/commande.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent,  // <-- ici le parent
+    component: AdminComponent,
     children: [
-      { path: '', component: DashboardComponent },
-      { path: 'listeAttente', component: ListeEmployesComponent },
-      { path: 'signup', component: RegisterComponent },
-      { path: 'signin', component: LoginComponent },
-      { path: 'tableRestaurant', component: TableRestaurantComponent },
-      { path: 'plats', component: PlatComponent },
-      { path: 'plats/addPlat', component: AddPlatComponent },
-      { path: 'plats/editPlat/:id', component: EditPlatComponent },
-      { path: 'employes', component: EmployesComponent },
-
-
+      { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'listeAttente', component: ListeEmployesComponent, canActivate: [AuthGuard] },
+      { path: 'signup', component: RegisterComponent }, // 🟢 accessible sans login
+      { path: 'signin', component: LoginComponent },   // 🟢 accessible sans login
+      { path: 'tableRestaurant', component: TableRestaurantComponent, canActivate: [AuthGuard] },
+      { path: 'plats', component: PlatComponent, canActivate: [AuthGuard] },
+      { path: 'plats/addPlat', component: AddPlatComponent, canActivate: [AuthGuard] },
+      { path: 'plats/editPlat/:id', component: EditPlatComponent, canActivate: [AuthGuard] },
+     { path: 'employes', component: EmployesComponent, canActivate: [AuthGuard] },
+    { path: 'commandes', component: CommandeComponent , canActivate: [AuthGuard] },
 
     ]
   }

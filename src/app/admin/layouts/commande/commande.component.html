@@ -1,0 +1,72 @@
+<body>
+  <!-- =============== Navigation ================ -->
+  <div class="container">
+    <app-header></app-header>
+
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+          <div class="topbar">
+              <div class="toggle">
+              </div>
+
+              <div class="search">
+                  <label>
+                      <input type="text" placeholder="Search here">
+                  </label>
+              </div>
+
+              <div class="user">
+                  <img src="assets/imgs/customer01.jpg" alt="">
+              </div>
+          </div>
+
+
+          <!-- ================ Order Details List ================= -->
+          <div class="details">
+              <div class="recentOrders">
+                  <div class="cardHeader">
+                      <h2>Commandes</h2>
+                  </div>
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>num</td>
+                        <td>client</td>
+                        <td>commande</td>
+                        <td>quantité</td>
+                        <td>Status</td>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let commande of plats">
+
+                        <td>{{ commande.idCommande }}</td>
+                        <td>{{ commande.idClient }}</td>
+                        <td>{{ commande.idPlat }}</td>
+                        <td>{{ commande.quantite }}</td>
+
+                        <td>
+                          <!-- Action dropdown -->
+                          <div class="action-dropdown">
+                             <div (click)="deletePlat(commande)" class="done-btn">Done</div>
+
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+
+          </div>
+      </div>
+  </div>
+
+  <!-- ====== ionicons ======= -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+

@@ -1,3 +1,4 @@
+
 <header class="header">
   <nav class="nav container1">
   <img src="../../../../assets/logo.png" alt="Food Lover Logo" class="logo"/>
@@ -20,15 +21,54 @@
               <a routerLink="/user/contacts" class="nav__link">Contact</a>
            </li>
 
-           <li class="panier-hover">
-           <a href="#"><i class="fas fa-shopping-cart"></i></a>
-             <div class="panier-popup">
-                 <h4>Panier</h4>
-                 <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="panier vide" class="panier-img" />
-                 <p>Votre panier est vide</p>
-                 <a href="panier.php" class="btn-panier" style="color: black;">Accéder au panier</a>
-             </div>
-           </li>
+           <li class="panier-hover" #popupWrapper>
+            <a class="cartIcon" (click)="toggleCart($event)">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <div class="overlay2" *ngIf="showCart"></div>
+              <div class="panier-popup" *ngIf="showCart">
+                <div (click)="close()" class="close_panier" *ngIf="showCart" ><strong>X</strong></div>
+                <h4>Panier</h4>
+
+
+
+                <!-- PANIER NON VIDE -->
+                <div *ngIf="cartItems.length > -1" class="ticket-panier">
+                  <div class="logo-container" style="text-align: center; margin-bottom: 10px; margin-left:166px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="logo" style="width: 50px; height: 50px;" />
+                  </div>
+
+                  <div class="ticket-body" style="max-height: 200px; overflow-y: auto; font-size:15px">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span><strong>nom</strong></span>
+                      <span><strong>qte x prix </strong>  | <strong>   TOTAL  </strong></span>
+                    </div>
+                    <br>
+                    <div *ngFor="let item of cartItems" style="margin-bottom: 10px;">
+
+                      <div *ngIf="item.quantity > 0" style="display: flex; justify-content: space-between;">
+                        <span>{{ item.quantity }} x {{ item.name }}</span>
+                        <span>{{ item.quantity }} x {{ item.price }} | {{ item.quantity * item.price }} TND</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ticket-total" style="border-top: 1px solid #f56a06; margin-top: 10px; padding-top: 10px; text-align: right; font-size:20px;">
+                    <strong>Total: {{ getTotal() }} TND</strong>
+                  </div>
+
+                  <div style="text-align: center; margin-top: 20px;">
+                    <a class="btn-panier" (click)="commander()" >Passer la commande</a>
+                    <a class="btn-panierA" (click)="annuler()" >Annuler</a>
+                  </div>
+
+
+                </div>
+              </div>
+          </li>
+
+
+
         </ul>
 
         <!-- Close button -->
@@ -42,7 +82,7 @@
         <div class="dropdown" id="dropdown">
            <div class="dropdown__profile">
               <div class="dropdown__names">
-                 Nom Utilisateur
+                     {{ clientData?.nom || 'Nom Utilisateur' }}
               </div>
 
               <div class="dropdown__image">
@@ -122,13 +162,7 @@ style="background-image: url('../../../../assets/slideAcceuil/img3.jpg'); backgr
   </div>
 </div>
 
-<div class="profile-actions">
-  <a href="edit-profile.php" class="btn-modify">
-     <i class="ri-edit-line" style="margin-right: 8px;"></i> Modifier le compte
-  </a>
-</div>
 
-<span class="close-popup" (click)="closeProfilePopup()">&times;</span>
 </div>
 </div>
 
@@ -143,6 +177,5 @@ style="background-image: url('../../../../assets/slideAcceuil/img3.jpg'); backgr
   <a href="login.php" class="btn-modify">Connexion</a>
   <a href="register.php" class="btn-modify" style="background-color: #6c63ff;">Inscription</a>
 </div>
-<span class="close-popup" (click)="closeNotConnectedPopup()">&times;</span>
 </div>
 </div>

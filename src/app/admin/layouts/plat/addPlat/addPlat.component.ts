@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/Services/auth.service';
 
+
 @Component({
   selector: 'app-add-plat',
   templateUrl: './addPlat.component.html',
@@ -28,7 +29,8 @@ export class AddPlatComponent {
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     return new HttpHeaders({
-      Authorization: `Bearer ${token}` // ✅ CORRIGÉ : Ajout des backticks `` pour le template string
+      Authorization: `Bearer ${token}`
+      // ✅ No Content-Type here because it’s FormData (browser will set it)
     });
   }
 
@@ -90,7 +92,7 @@ export class AddPlatComponent {
     alertBox.style.padding = '15px 25px';
     alertBox.style.background = type === 'success' ? '#e8f5e9' : '#ffebee';
     alertBox.style.color = type === 'success' ? '#2e7d32' : '#c62828';
-    alertBox.style.borderLeft = `4px solid ${type === 'success' ? '#2e7d32' : '#c62828'}`; // ✅ CORRIGÉ : Ajout des backticks
+    alertBox.style.borderLeft = `4px solid ${type === 'success' ? '#2e7d32' : '#c62828'}`;
     alertBox.style.borderRadius = '4px';
     alertBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     alertBox.style.zIndex = '1000';

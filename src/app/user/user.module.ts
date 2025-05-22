@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { AuthentificationComponent } from './layouts/authentification/authentification.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { IonicModule } from '@ionic/angular';
     FooterComponent,
     HeaderclientComponent,
     MenuComponent,
-    ProposComponent
+    ProposComponent,
+    AuthentificationComponent,
   ],
   imports: [
     CommonModule,

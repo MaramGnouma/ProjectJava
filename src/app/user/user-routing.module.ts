@@ -7,6 +7,7 @@ import { AcceuilComponent } from './layouts/acceuil/acceuil.component';
 import { ContactComponent } from './layouts/contact/contact.component';
 import { MenuComponent } from './layouts/menu/menu.component';
 import { ProposComponent } from './layouts/propos/propos.component';
+import { AuthentificationComponent } from './layouts/authentification/authentification.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'acceuil', component: AcceuilComponent },
+      { path: 'login', component: AuthentificationComponent },
       { path: 'contacts', component: ContactComponent },
       { path: 'propos', component: ProposComponent },
       { path: 'menu', component: MenuComponent },
